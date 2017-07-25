@@ -1,0 +1,526 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D21EAE6C1F27EE8E0072358E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE6B1F27EE8E0072358E /* AppDelegate.swift */; };
+		D21EAE6E1F27EE8E0072358E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE6D1F27EE8E0072358E /* ViewController.swift */; };
+		D21EAE711F27EE8F0072358E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D21EAE6F1F27EE8F0072358E /* Main.storyboard */; };
+		D21EAE731F27EE8F0072358E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D21EAE721F27EE8F0072358E /* Assets.xcassets */; };
+		D21EAE761F27EE8F0072358E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D21EAE741F27EE8F0072358E /* LaunchScreen.storyboard */; };
+		D21EAE811F27EE8F0072358E /* BotelleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE801F27EE8F0072358E /* BotelleTests.swift */; };
+		D21EAE8C1F27EE8F0072358E /* BotelleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE8B1F27EE8F0072358E /* BotelleUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D21EAE7D1F27EE8F0072358E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D21EAE601F27EE8E0072358E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D21EAE671F27EE8E0072358E;
+			remoteInfo = Botelle;
+		};
+		D21EAE881F27EE8F0072358E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D21EAE601F27EE8E0072358E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D21EAE671F27EE8E0072358E;
+			remoteInfo = Botelle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D21EAE681F27EE8E0072358E /* Botelle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Botelle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D21EAE6B1F27EE8E0072358E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D21EAE6D1F27EE8E0072358E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D21EAE701F27EE8F0072358E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D21EAE721F27EE8F0072358E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D21EAE751F27EE8F0072358E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D21EAE771F27EE8F0072358E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D21EAE7C1F27EE8F0072358E /* BotelleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BotelleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D21EAE801F27EE8F0072358E /* BotelleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotelleTests.swift; sourceTree = "<group>"; };
+		D21EAE821F27EE8F0072358E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D21EAE871F27EE8F0072358E /* BotelleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BotelleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D21EAE8B1F27EE8F0072358E /* BotelleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotelleUITests.swift; sourceTree = "<group>"; };
+		D21EAE8D1F27EE8F0072358E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D21EAE651F27EE8E0072358E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D21EAE791F27EE8F0072358E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D21EAE841F27EE8F0072358E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D21EAE5F1F27EE8E0072358E = {
+			isa = PBXGroup;
+			children = (
+				D21EAE6A1F27EE8E0072358E /* Botelle */,
+				D21EAE7F1F27EE8F0072358E /* BotelleTests */,
+				D21EAE8A1F27EE8F0072358E /* BotelleUITests */,
+				D21EAE691F27EE8E0072358E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D21EAE691F27EE8E0072358E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D21EAE681F27EE8E0072358E /* Botelle.app */,
+				D21EAE7C1F27EE8F0072358E /* BotelleTests.xctest */,
+				D21EAE871F27EE8F0072358E /* BotelleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D21EAE6A1F27EE8E0072358E /* Botelle */ = {
+			isa = PBXGroup;
+			children = (
+				D21EAE6B1F27EE8E0072358E /* AppDelegate.swift */,
+				D21EAE6D1F27EE8E0072358E /* ViewController.swift */,
+				D21EAE6F1F27EE8F0072358E /* Main.storyboard */,
+				D21EAE721F27EE8F0072358E /* Assets.xcassets */,
+				D21EAE741F27EE8F0072358E /* LaunchScreen.storyboard */,
+				D21EAE771F27EE8F0072358E /* Info.plist */,
+			);
+			path = Botelle;
+			sourceTree = "<group>";
+		};
+		D21EAE7F1F27EE8F0072358E /* BotelleTests */ = {
+			isa = PBXGroup;
+			children = (
+				D21EAE801F27EE8F0072358E /* BotelleTests.swift */,
+				D21EAE821F27EE8F0072358E /* Info.plist */,
+			);
+			path = BotelleTests;
+			sourceTree = "<group>";
+		};
+		D21EAE8A1F27EE8F0072358E /* BotelleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D21EAE8B1F27EE8F0072358E /* BotelleUITests.swift */,
+				D21EAE8D1F27EE8F0072358E /* Info.plist */,
+			);
+			path = BotelleUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D21EAE671F27EE8E0072358E /* Botelle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D21EAE901F27EE8F0072358E /* Build configuration list for PBXNativeTarget "Botelle" */;
+			buildPhases = (
+				D21EAE641F27EE8E0072358E /* Sources */,
+				D21EAE651F27EE8E0072358E /* Frameworks */,
+				D21EAE661F27EE8E0072358E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Botelle;
+			productName = Botelle;
+			productReference = D21EAE681F27EE8E0072358E /* Botelle.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D21EAE7B1F27EE8F0072358E /* BotelleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D21EAE931F27EE8F0072358E /* Build configuration list for PBXNativeTarget "BotelleTests" */;
+			buildPhases = (
+				D21EAE781F27EE8F0072358E /* Sources */,
+				D21EAE791F27EE8F0072358E /* Frameworks */,
+				D21EAE7A1F27EE8F0072358E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D21EAE7E1F27EE8F0072358E /* PBXTargetDependency */,
+			);
+			name = BotelleTests;
+			productName = BotelleTests;
+			productReference = D21EAE7C1F27EE8F0072358E /* BotelleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D21EAE861F27EE8F0072358E /* BotelleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D21EAE961F27EE8F0072358E /* Build configuration list for PBXNativeTarget "BotelleUITests" */;
+			buildPhases = (
+				D21EAE831F27EE8F0072358E /* Sources */,
+				D21EAE841F27EE8F0072358E /* Frameworks */,
+				D21EAE851F27EE8F0072358E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D21EAE891F27EE8F0072358E /* PBXTargetDependency */,
+			);
+			name = BotelleUITests;
+			productName = BotelleUITests;
+			productReference = D21EAE871F27EE8F0072358E /* BotelleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D21EAE601F27EE8E0072358E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Botelle;
+				TargetAttributes = {
+					D21EAE671F27EE8E0072358E = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					D21EAE7B1F27EE8F0072358E = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D21EAE671F27EE8E0072358E;
+					};
+					D21EAE861F27EE8F0072358E = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D21EAE671F27EE8E0072358E;
+					};
+				};
+			};
+			buildConfigurationList = D21EAE631F27EE8E0072358E /* Build configuration list for PBXProject "Botelle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D21EAE5F1F27EE8E0072358E;
+			productRefGroup = D21EAE691F27EE8E0072358E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D21EAE671F27EE8E0072358E /* Botelle */,
+				D21EAE7B1F27EE8F0072358E /* BotelleTests */,
+				D21EAE861F27EE8F0072358E /* BotelleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D21EAE661F27EE8E0072358E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21EAE761F27EE8F0072358E /* LaunchScreen.storyboard in Resources */,
+				D21EAE731F27EE8F0072358E /* Assets.xcassets in Resources */,
+				D21EAE711F27EE8F0072358E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D21EAE7A1F27EE8F0072358E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D21EAE851F27EE8F0072358E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D21EAE641F27EE8E0072358E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21EAE6E1F27EE8E0072358E /* ViewController.swift in Sources */,
+				D21EAE6C1F27EE8E0072358E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D21EAE781F27EE8F0072358E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21EAE811F27EE8F0072358E /* BotelleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D21EAE831F27EE8F0072358E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D21EAE8C1F27EE8F0072358E /* BotelleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D21EAE7E1F27EE8F0072358E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D21EAE671F27EE8E0072358E /* Botelle */;
+			targetProxy = D21EAE7D1F27EE8F0072358E /* PBXContainerItemProxy */;
+		};
+		D21EAE891F27EE8F0072358E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D21EAE671F27EE8E0072358E /* Botelle */;
+			targetProxy = D21EAE881F27EE8F0072358E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D21EAE6F1F27EE8F0072358E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D21EAE701F27EE8F0072358E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D21EAE741F27EE8F0072358E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D21EAE751F27EE8F0072358E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D21EAE8E1F27EE8F0072358E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D21EAE8F1F27EE8F0072358E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D21EAE911F27EE8F0072358E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Botelle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Botelle.Botelle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D21EAE921F27EE8F0072358E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Botelle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Botelle.Botelle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		D21EAE941F27EE8F0072358E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BotelleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Botelle.BotelleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Botelle.app/Botelle";
+			};
+			name = Debug;
+		};
+		D21EAE951F27EE8F0072358E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BotelleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Botelle.BotelleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Botelle.app/Botelle";
+			};
+			name = Release;
+		};
+		D21EAE971F27EE8F0072358E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = BotelleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Botelle.BotelleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Botelle;
+			};
+			name = Debug;
+		};
+		D21EAE981F27EE8F0072358E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = BotelleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Botelle.BotelleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Botelle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D21EAE631F27EE8E0072358E /* Build configuration list for PBXProject "Botelle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D21EAE8E1F27EE8F0072358E /* Debug */,
+				D21EAE8F1F27EE8F0072358E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D21EAE901F27EE8F0072358E /* Build configuration list for PBXNativeTarget "Botelle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D21EAE911F27EE8F0072358E /* Debug */,
+				D21EAE921F27EE8F0072358E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D21EAE931F27EE8F0072358E /* Build configuration list for PBXNativeTarget "BotelleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D21EAE941F27EE8F0072358E /* Debug */,
+				D21EAE951F27EE8F0072358E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D21EAE961F27EE8F0072358E /* Build configuration list for PBXNativeTarget "BotelleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D21EAE971F27EE8F0072358E /* Debug */,
+				D21EAE981F27EE8F0072358E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D21EAE601F27EE8E0072358E /* Project object */;
+}

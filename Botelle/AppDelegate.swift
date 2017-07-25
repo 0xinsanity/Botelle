@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Botelle
 //
-//  Created by hzhang19 on 7/25/17.
+//  Created by nhanover on 7/25/17.
 //  Copyright © 2017 Botelle. All rights reserved.
 //
 
@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        window?.rootViewController = ViewController()
+        
         return true
     }
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D21EAE6C1F27EE8E0072358E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE6B1F27EE8E0072358E /* AppDelegate.swift */; };
 		D21EAE6E1F27EE8E0072358E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE6D1F27EE8E0072358E /* ViewController.swift */; };
-		D21EAE711F27EE8F0072358E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D21EAE6F1F27EE8F0072358E /* Main.storyboard */; };
 		D21EAE731F27EE8F0072358E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D21EAE721F27EE8F0072358E /* Assets.xcassets */; };
 		D21EAE761F27EE8F0072358E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D21EAE741F27EE8F0072358E /* LaunchScreen.storyboard */; };
 		D21EAE811F27EE8F0072358E /* BotelleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE801F27EE8F0072358E /* BotelleTests.swift */; };
@@ -37,7 +36,6 @@
 		D21EAE681F27EE8E0072358E /* Botelle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Botelle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D21EAE6B1F27EE8E0072358E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D21EAE6D1F27EE8E0072358E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D21EAE701F27EE8F0072358E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D21EAE721F27EE8F0072358E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D21EAE751F27EE8F0072358E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D21EAE771F27EE8F0072358E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,7 +97,6 @@
 			children = (
 				D21EAE6B1F27EE8E0072358E /* AppDelegate.swift */,
 				D21EAE6D1F27EE8E0072358E /* ViewController.swift */,
-				D21EAE6F1F27EE8F0072358E /* Main.storyboard */,
 				D21EAE721F27EE8F0072358E /* Assets.xcassets */,
 				D21EAE741F27EE8F0072358E /* LaunchScreen.storyboard */,
 				D21EAE771F27EE8F0072358E /* Info.plist */,
@@ -193,6 +190,7 @@
 				TargetAttributes = {
 					D21EAE671F27EE8E0072358E = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = EN44UHW9U7;
 						ProvisioningStyle = Automatic;
 					};
 					D21EAE7B1F27EE8F0072358E = {
@@ -234,7 +232,6 @@
 			files = (
 				D21EAE761F27EE8F0072358E /* LaunchScreen.storyboard in Resources */,
 				D21EAE731F27EE8F0072358E /* Assets.xcassets in Resources */,
-				D21EAE711F27EE8F0072358E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +293,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D21EAE6F1F27EE8F0072358E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D21EAE701F27EE8F0072358E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D21EAE741F27EE8F0072358E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -410,7 +399,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = EN44UHW9U7;
 				INFOPLIST_FILE = Botelle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Botelle.Botelle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -422,7 +413,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = EN44UHW9U7;
 				INFOPLIST_FILE = Botelle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Botelle.Botelle;
 				PRODUCT_NAME = "$(TARGET_NAME)";

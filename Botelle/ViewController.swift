@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UITableViewController {
     
@@ -14,6 +15,9 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let logoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logout))
+        self.navigationItem.leftBarButtonItem = logoutItem
         
         let addItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addGrocery))
         self.navigationItem.rightBarButtonItem = addItem
@@ -57,6 +61,16 @@ class ViewController: UITableViewController {
     
     func addGrocery() {
         self.navigationController?.pushViewController(addGroceryController(), animated: true)
+    }
+    
+    func logout() {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            self.present(UINavigationController(rootViewController: LoginViewController()), animated: true, completion: nil)
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
     
 }

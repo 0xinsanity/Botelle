@@ -14,6 +14,11 @@
 		D21EAE761F27EE8F0072358E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D21EAE741F27EE8F0072358E /* LaunchScreen.storyboard */; };
 		D21EAE811F27EE8F0072358E /* BotelleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE801F27EE8F0072358E /* BotelleTests.swift */; };
 		D21EAE8C1F27EE8F0072358E /* BotelleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE8B1F27EE8F0072358E /* BotelleUITests.swift */; };
+		D52701F51F2BBFD300639427 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D52701F41F2BBFD300639427 /* GoogleService-Info.plist */; };
+		D52701F71F2BC05500639427 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52701F61F2BC05500639427 /* LoginViewController.swift */; };
+		D5BC72C91F2BCBC90093BA5C /* FindListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72C81F2BCBC90093BA5C /* FindListController.swift */; };
+		D5BC72CC1F2BCF220093BA5C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */; };
+		D5BC72CE1F2BDCEA0093BA5C /* ListFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */; };
 		DEF025C91F281FAA00574FC3 /* AddGroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF025C81F281FAA00574FC3 /* AddGroceryController.swift */; };
 		DEF025D61F294E6900574FC3 /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF025D51F294E6900574FC3 /* Kanna.framework */; };
 /* End PBXBuildFile section */
@@ -51,6 +56,11 @@
 		D21EAE871F27EE8F0072358E /* BotelleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BotelleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D21EAE8B1F27EE8F0072358E /* BotelleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotelleUITests.swift; sourceTree = "<group>"; };
 		D21EAE8D1F27EE8F0072358E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D52701F41F2BBFD300639427 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D52701F61F2BC05500639427 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D5BC72C81F2BCBC90093BA5C /* FindListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FindListController.swift; path = ../FindListController.swift; sourceTree = "<group>"; };
+		D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListFormController.swift; sourceTree = "<group>"; };
 		DEF025C81F281FAA00574FC3 /* AddGroceryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroceryController.swift; sourceTree = "<group>"; };
 		DEF025D51F294E6900574FC3 /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = "../../Library/Developer/Xcode/DerivedData/Botelle-beimggltidceckdiovawkbygypam/Build/Products/Debug-iphonesimulator/Kanna/Kanna.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,11 +127,11 @@
 			isa = PBXGroup;
 			children = (
 				D21EAE6B1F27EE8E0072358E /* AppDelegate.swift */,
-				D21EAE6D1F27EE8E0072358E /* ViewController.swift */,
 				D21EAE721F27EE8F0072358E /* Assets.xcassets */,
 				D21EAE741F27EE8F0072358E /* LaunchScreen.storyboard */,
 				D21EAE771F27EE8F0072358E /* Info.plist */,
-				DEF025C81F281FAA00574FC3 /* AddGroceryController.swift */,
+				D52701F41F2BBFD300639427 /* GoogleService-Info.plist */,
+				D5BC72CA1F2BCC2F0093BA5C /* Controllers */,
 			);
 			path = Botelle;
 			sourceTree = "<group>";
@@ -142,6 +152,19 @@
 				D21EAE8D1F27EE8F0072358E /* Info.plist */,
 			);
 			path = BotelleUITests;
+			sourceTree = "<group>";
+		};
+		D5BC72CA1F2BCC2F0093BA5C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DEF025C81F281FAA00574FC3 /* AddGroceryController.swift */,
+				D5BC72C81F2BCBC90093BA5C /* FindListController.swift */,
+				D21EAE6D1F27EE8E0072358E /* ViewController.swift */,
+				D52701F61F2BC05500639427 /* LoginViewController.swift */,
+				D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */,
+				D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		FF875D5B40EDAFAB4CE7D098 /* Frameworks */ = {
@@ -267,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21EAE761F27EE8F0072358E /* LaunchScreen.storyboard in Resources */,
+				D52701F51F2BBFD300639427 /* GoogleService-Info.plist in Resources */,
 				D21EAE731F27EE8F0072358E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,7 +324,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		68175726FFE70618B46E660C /* [CP] Copy Pods Resources */ = {
@@ -340,7 +364,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5BC72CE1F2BDCEA0093BA5C /* ListFormController.swift in Sources */,
+				D5BC72CC1F2BCF220093BA5C /* SignupViewController.swift in Sources */,
+				D5BC72C91F2BCBC90093BA5C /* FindListController.swift in Sources */,
 				D21EAE6E1F27EE8E0072358E /* ViewController.swift in Sources */,
+				D52701F71F2BC05500639427 /* LoginViewController.swift in Sources */,
 				DEF025C91F281FAA00574FC3 /* AddGroceryController.swift in Sources */,
 				D21EAE6C1F27EE8E0072358E /* AppDelegate.swift in Sources */,
 			);

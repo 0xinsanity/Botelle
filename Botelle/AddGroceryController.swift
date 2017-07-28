@@ -21,7 +21,6 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.delegate = self
@@ -38,8 +37,7 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
         
-        
-        
+        // TODO: Add second option for location
         
         // Place the search bar view to the tableview headerview.
         tableView.tableHeaderView = searchController.searchBar

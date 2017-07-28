@@ -72,8 +72,15 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let cell = tableView.cellForRow(at: indexPath)
         
+        (self.navigationController?.viewControllers.first as! ViewController).myArray.append((tableView.cellForRow(at: indexPath)?.textLabel?.text)!)
+        
+        (self.navigationController?.viewControllers.first as! ViewController).tableView.reloadData()
+        
+        searchController.searchBar.resignFirstResponder()
+        searchController.isActive = false
+        
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

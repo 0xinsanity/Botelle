@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    let myArray = [1,2,3]
+    var myArray: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,18 @@ class ViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            self.tableView.beginUpdates()
+            self.myArray.remove(at: indexPath.row) // Check this out
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.endUpdates()
+        }
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Num: \(indexPath.row)")

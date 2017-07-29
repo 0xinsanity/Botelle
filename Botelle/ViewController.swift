@@ -17,7 +17,8 @@ class ViewController: UITableViewController {
     var list_name: String!
     let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
     var pay_for_goods: UIButton!
-    var checkedItemArray = [Int: [Int]]()
+    var checkedItemArray: [IndexPath]!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,31 +89,25 @@ class ViewController: UITableViewController {
             if let cell = tableView.cellForRow(at: indexPath) {
                 if (cell.accessoryType == .none) {
                     cell.accessoryType = .checkmark
-                    if (checkedItemArray[indexPath.section] == nil) {
-                        checkedItemArray[indexPath.section] = [indexPath.row]
+                    if (checkedItemArray == nil) {
+                        checkedItemArray = [indexPath]
                     } else {
-                        checkedItemArray[indexPath.section]?.append(indexPath.row)
+                        checkedItemArray.append(indexPath)
                     }
                     pay_for_goods.isHidden = false
                 } else {
                     // Remove checkeditem from our list
-                    for i in 0...checkedItemArray[indexPath.section]!.count {
-                        if (indexPath.row == checkedItemArray[indexPath.section]?[i]) {
-                            checkedItemArray[indexPath.section]!.remove(at: i)
+                    for i in 0...checkedItemArray.count {
+                        if (indexPath == checkedItemArray[i]) {
+                            checkedItemArray.remove(at: i)
                             break
                         }
                     }
                     cell.accessoryType = .none
                 }
             }
-            
-            for i in Array(checkedItemArray.keys) {
-                if (checkedItemArray[i]!.isEmpty) {
-                    pay_for_goods.isHidden = true
-                } else {
-                    pay_for_goods.isHidden = false
-                    break
-                }
+            if (checkedItemArray.isEmpty) {
+                pay_for_goods.isHidden = true
             }
             print(checkedItemArray)
         }
@@ -124,8 +119,12 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath)
-        cell.textLabel!.text = "\((groceriesList[Array(groceriesList.keys)[indexPath.section]]?[indexPath.row])!)"
+        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+        
+        let information = groceriesList[Array(groceriesList.keys)[indexPath.section]]?[indexPath.row].characters.split(separator: ":").map(String.init)
+        
+        cell.textLabel?.text = information![0]
+        cell.detailTextLabel?.text = information![1]
         
         return cell
     }
@@ -153,11 +152,28 @@ class ViewController: UITableViewController {
     }
     
     func paidForGroceries() {
-        /*for i in checkedItemArray {
-            let cell = tableView.cellForRow(at: checkedItemArray[i])
+        var items: [String] = []
+        var price: Float = 0
+        for i in checkedItemArray {
+            items.append((tableView.cellForRow(at: i)?.textLabel?.text)!)
+            price += Float((tableView.cellForRow(at: i)?.detailTextLabel?.text)!)!
+        }
+        price += 2
+        
+        let text_items = items.joined(separator: " and ")
+        
+        let alertView = UIAlertController(title: "Confirm", message: "Are you paying for \(text_items) at $\(price)?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let yes = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default) { (alertAction) in
             
         }
-        let alertView = UIAlertController(title: "Confirm", message: "Are you paying for ", preferredStyle: <#T##UIAlertControllerStyle#>)*/
+        
+        let no = UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil)
+        
+        alertView.addAction(no)
+        alertView.addAction(yes)
+        
+        self.present(alertView, animated: true, completion: nil)
     }
     
 }

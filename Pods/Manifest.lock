@@ -1,40 +1,4 @@
 PODS:
-  - Braintree (4.8.5):
-    - Braintree/Card (= 4.8.5)
-    - Braintree/Core (= 4.8.5)
-    - Braintree/PayPal (= 4.8.5)
-    - Braintree/UI (= 4.8.5)
-  - Braintree/Card (4.8.5):
-    - Braintree/Core
-  - Braintree/Core (4.8.5)
-  - Braintree/PayPal (4.8.5):
-    - Braintree/Core
-    - Braintree/PayPalOneTouch
-  - Braintree/PayPalDataCollector (4.8.5):
-    - Braintree/Core
-    - Braintree/PayPalUtils
-  - Braintree/PayPalOneTouch (4.8.5):
-    - Braintree/Core
-    - Braintree/PayPalDataCollector
-    - Braintree/PayPalUtils
-  - Braintree/PayPalUtils (4.8.5)
-  - Braintree/UI (4.8.5):
-    - Braintree/Card
-    - Braintree/Core
-  - Braintree/UnionPay (4.8.5):
-    - Braintree/Card
-    - Braintree/Core
-  - Braintree/Venmo (4.8.5):
-    - Braintree/Core
-    - Braintree/PayPalDataCollector
-  - BraintreeDropIn (5.2.1):
-    - BraintreeDropIn/DropIn (= 5.2.1)
-  - BraintreeDropIn/DropIn (5.2.1):
-    - Braintree/Card (~> 4.0)
-    - Braintree/Core (~> 4.0)
-    - Braintree/UnionPay (~> 4.0)
-    - BraintreeDropIn/UIKit
-  - BraintreeDropIn/UIKit (5.2.1)
   - Firebase/Auth (4.0.4):
     - Firebase/Core
     - FirebaseAuth (= 4.0.0)
@@ -76,19 +40,16 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - Stripe (11.2.0)
 
 DEPENDENCIES:
-  - Braintree
-  - Braintree/Venmo
-  - BraintreeDropIn
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Kanna (~> 2.1.0)
+  - Stripe
 
 SPEC CHECKSUMS:
-  Braintree: 12225834d0e39ffad56888756a3c0d8bda043d53
-  BraintreeDropIn: e9cecf2ec946f084476f007a7e91925016b77e91
   Firebase: 1492bf04e1b73a7353b4fb2cf5a20bac9692f341
   FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
@@ -99,7 +60,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   Kanna: 9b4b086c218703f2b94f5b21a466217dd2f9332e
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Stripe: 898f83a95d72180c6eb4acd65b2ae6158fc6a8bd
 
-PODFILE CHECKSUM: 58c6761f36e5507a30a448d6e951590b068291d2
+PODFILE CHECKSUM: 3cd007393c9d7b37ae07f863efae3249ff07d713
 
 COCOAPODS: 1.2.0

@@ -8,19 +8,19 @@
 
 import UIKit
 import Firebase
-import Braintree
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        BTAppSwitch.setReturnURLScheme("Botelle.Botelle.payments")
         
+        STPPaymentConfiguration.shared().publishableKey = "pk_test_ESqRf9K8NIVc7pl2MvgDWBBg"
+        STPPaymentConfiguration.shared().appleMerchantIdentifier = "your apple merchant identifier"
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
@@ -72,13 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
-        if url.scheme?.localizedCaseInsensitiveCompare("com.your-company.Your-App.payments") == .orderedSame {
-            return BTAppSwitch.handleOpen(url, options: options)
-        }
-        return false
     }
 
 }

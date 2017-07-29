@@ -4,31 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Braintree-Braintree-Drop-In-Localization.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Braintree-Braintree-UI-Localization.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Braintree.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>BraintreeDropIn-Braintree-UIKit-Localization.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>BraintreeDropIn.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -49,6 +24,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Stripe-Stripe.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Stripe.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,7 +47,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>312B3E952FE0D7D7ECFB3CFF8C2E6CD1</key>
+		<key>44FB459948D604FC7A3B5E8251B01858</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,22 +57,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>57E5D3F42D8007A61EA7BBCB4E6A5C94</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>94AEAD85BE6E47D30A40ADC306AF0A91</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B7F9C17EEF35B1512FDCE8283D7E6ACC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B968DC960FF9837CB3E2E9002F29D384</key>
+		<key>AA2AB6F1650759CC4F3BBFF3C24B9972</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
+		<key>DA78379CCE211AB6637C51F0FBBA5E94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F400F200696AFB168B7E16A66C213E83</key>
+		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

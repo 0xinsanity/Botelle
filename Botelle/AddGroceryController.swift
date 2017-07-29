@@ -12,7 +12,7 @@ import Firebase
 
 class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
-    var dataArray: [String]! = ["Search for an item"]
+    var dataArray: [String]! = ["Item Name is Here:Price is Here"]
     
     var searchController: UISearchController!
     var shouldShowSearchResults = false
@@ -56,25 +56,20 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath)
+        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         
-        if shouldShowSearchResults {
-            //cell.textLabel?.text = filteredArray[indexPath.row]
-            cell.textLabel?.text = dataArray[indexPath.row]
-        }
-        else {
-            cell.textLabel?.text = dataArray[indexPath.row]
-        }
-        
+        let information = dataArray[indexPath.row].characters.split(separator: ":").map(String.init)
+        cell.textLabel?.text = information[0]
+        cell.detailTextLabel?.text = information[1]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if let list = (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name] {
-            (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name]!.append((tableView.cellForRow(at: indexPath)?.textLabel?.text)!)
+            (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name]!.append((tableView.cellForRow(at: indexPath)?.textLabel?.text)!+":"+(tableView.cellForRow(at: indexPath)?.detailTextLabel?.text)!)
         } else {
-            (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name] = [((tableView.cellForRow(at: indexPath)?.textLabel?.text)!)]
+            (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name] = [((tableView.cellForRow(at: indexPath)?.textLabel?.text)!)+":"+(tableView.cellForRow(at: indexPath)?.detailTextLabel?.text)!]
         }
         
         
@@ -104,7 +99,7 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
             let names = doc.xpath("//itemname")
             let pricing = doc.xpath("//pricing")
                 for i in 0...names.count-1 {
-                    dataArray.append(names[i].innerHTML!+": "+pricing[i].innerHTML!)
+                    dataArray.append(names[i].innerHTML!+":"+pricing[i].innerHTML!)
                 }
         }
         

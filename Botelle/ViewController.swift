@@ -12,9 +12,10 @@ import FirebaseDatabase
 
 class ViewController: UITableViewController {
     
-    var myArray: [String] = []
+    var groceriesList: [String: [String]]!
     let ref = Database.database().reference()
     var list_name: String!
+    let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +27,14 @@ class ViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = addItem
         self.title = "Botelle"
         
-        let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
+        groceriesList = [email_name: []]
+        
         ref.child("Users/\(email_name)/list").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as! NSString
             self.list_name = value as String!
             self.ref.child("Shopping List/\(value)/grocery_list").observe(DataEventType.value, with: { (snapshot2) in
-                if let value2 = snapshot2.value! as? [String] {
-                    self.myArray = value2
+                if let value2 = snapshot2.value! as? NSDictionary {
+                    self.groceriesList = value2 as! [String : [String]]
                     self.tableView.reloadData()
                 }
             })
@@ -44,7 +46,7 @@ class ViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if (list_name != nil) {
-            ref.child("Shopping List/\(list_name!)/grocery_list").setValue(myArray)
+            ref.child("Shopping List/\(list_name!)/grocery_list/\(email_name)").setValue(groceriesList[email_name])
         }
     }
 
@@ -60,25 +62,41 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             self.tableView.beginUpdates()
-            self.myArray.remove(at: indexPath.row) // Check this out
+            self.groceriesList[Array(groceriesList.keys)[indexPath.section]]?.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.endUpdates()
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
-        print("Value: \(myArray[indexPath.row])")
+        if (tableView.headerView(forSection: indexPath.section)?.textLabel?.text! != email_name) {
+            if let cell = tableView.cellForRow(at: indexPath) {
+                if (cell.accessoryType == .none) {
+                    cell.accessoryType = .checkmark
+                } else {
+                    cell.accessoryType = .none
+                }
+            }
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myArray.count
+        return groceriesList[Array(groceriesList.keys)[section]]!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath)
-        cell.textLabel!.text = "\(myArray[indexPath.row])"
+        cell.textLabel!.text = "\((groceriesList[Array(groceriesList.keys)[indexPath.section]]?[indexPath.row])!)"
+        
         return cell
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return groceriesList.keys.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return Array(groceriesList.keys)[section]
     }
     
     func addGrocery() {

@@ -8,7 +8,7 @@
 
 import UIKit
 import Kanna
-
+import Firebase
 
 class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
@@ -17,6 +17,7 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
     var searchController: UISearchController!
     var shouldShowSearchResults = false
     var tableView: UITableView!
+    let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,8 +71,12 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if let list = (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name] {
+            (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name]!.append((tableView.cellForRow(at: indexPath)?.textLabel?.text)!)
+        } else {
+            (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name] = [((tableView.cellForRow(at: indexPath)?.textLabel?.text)!)]
+        }
         
-        (self.navigationController?.viewControllers.first as! ViewController).myArray.append((tableView.cellForRow(at: indexPath)?.textLabel?.text)!)
         
         (self.navigationController?.viewControllers.first as! ViewController).tableView.reloadData()
         

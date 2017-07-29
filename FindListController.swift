@@ -18,9 +18,24 @@ class FindListController: UIViewController, UITableViewDelegate, UITableViewData
     var shouldShowSearchResults = false
     var tableView: UITableView!
     let ref = Database.database().reference()
+    let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref.child("Users/\(email_name)/list").observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSString
+            
+            if value != nil {
+                self.present(UINavigationController(rootViewController: ViewController()), animated: true, completion: nil)
+                return
+            }
+            // ...
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
         
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")

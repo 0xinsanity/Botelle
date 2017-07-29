@@ -17,7 +17,7 @@ class ViewController: UITableViewController {
     var list_name: String!
     let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
     var pay_for_goods: UIButton!
-    var checkedItemArray = [Int]()
+    var checkedItemArray = [Int: [Int]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,10 +65,6 @@ class ViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             self.tableView.beginUpdates()
@@ -78,22 +74,47 @@ class ViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let section_text = tableView.headerView(forSection: indexPath.section)?.textLabel?.text
+        if (section_text == email_name) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (tableView.headerView(forSection: indexPath.section)?.textLabel?.text! != email_name) {
             if let cell = tableView.cellForRow(at: indexPath) {
                 if (cell.accessoryType == .none) {
                     cell.accessoryType = .checkmark
-                    checkedItemArray.append(indexPath.row)
+                    if (checkedItemArray[indexPath.section] == nil) {
+                        checkedItemArray[indexPath.section] = [indexPath.row]
+                    } else {
+                        checkedItemArray[indexPath.section]?.append(indexPath.row)
+                    }
                     pay_for_goods.isHidden = false
                 } else {
-                    checkedItemArray.remove(at: 0)
+                    // Remove checkeditem from our list
+                    for i in 0...checkedItemArray[indexPath.section]!.count {
+                        if (indexPath.row == checkedItemArray[indexPath.section]?[i]) {
+                            checkedItemArray[indexPath.section]!.remove(at: i)
+                            break
+                        }
+                    }
                     cell.accessoryType = .none
                 }
             }
             
-            if (checkedItemArray == []) {
-                pay_for_goods.isHidden = true
+            for i in Array(checkedItemArray.keys) {
+                if (checkedItemArray[i]!.isEmpty) {
+                    pay_for_goods.isHidden = true
+                } else {
+                    pay_for_goods.isHidden = false
+                    break
+                }
             }
+            print(checkedItemArray)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -132,7 +153,11 @@ class ViewController: UITableViewController {
     }
     
     func paidForGroceries() {
-        self.navigationController?.pushViewController(PayForGroceriesController(), animated: true)
+        /*for i in checkedItemArray {
+            let cell = tableView.cellForRow(at: checkedItemArray[i])
+            
+        }
+        let alertView = UIAlertController(title: "Confirm", message: "Are you paying for ", preferredStyle: <#T##UIAlertControllerStyle#>)*/
     }
     
 }

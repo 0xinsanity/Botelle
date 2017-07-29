@@ -6,4 +6,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Kanna', '~> 2.1.0'
+pod 'Braintree'
+pod 'BraintreeDropIn'
+pod 'Braintree/Venmo'
 end

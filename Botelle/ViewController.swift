@@ -16,6 +16,8 @@ class ViewController: UITableViewController {
     let ref = Database.database().reference()
     var list_name: String!
     let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
+    var pay_for_goods: UIButton!
+    var checkedItemArray = [Int]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,14 @@ class ViewController: UITableViewController {
         })
     
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        pay_for_goods = UIButton(frame: CGRect(x: 10, y: self.view.frame.height-100, width: self.view.frame.width-20, height: 40))
+        pay_for_goods.backgroundColor = UIColor.blue
+        pay_for_goods.setTitle("Pay for Goods", for: UIControlState.normal)
+        pay_for_goods.setTitleColor(UIColor.white, for: UIControlState.normal)
+        pay_for_goods.isHidden = true
+        pay_for_goods.addTarget(self, action: #selector(paidForGroceries), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(pay_for_goods)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,11 +83,19 @@ class ViewController: UITableViewController {
             if let cell = tableView.cellForRow(at: indexPath) {
                 if (cell.accessoryType == .none) {
                     cell.accessoryType = .checkmark
+                    checkedItemArray.append(indexPath.row)
+                    pay_for_goods.isHidden = false
                 } else {
+                    checkedItemArray.remove(at: 0)
                     cell.accessoryType = .none
                 }
             }
+            
+            if (checkedItemArray == []) {
+                pay_for_goods.isHidden = true
+            }
         }
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -111,6 +129,10 @@ class ViewController: UITableViewController {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
+    }
+    
+    func paidForGroceries() {
+        self.navigationController?.pushViewController(PayForGroceriesController(), animated: true)
     }
     
 }

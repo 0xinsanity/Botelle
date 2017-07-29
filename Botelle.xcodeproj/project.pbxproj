@@ -19,6 +19,7 @@
 		D5BC72C91F2BCBC90093BA5C /* FindListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72C81F2BCBC90093BA5C /* FindListController.swift */; };
 		D5BC72CC1F2BCF220093BA5C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */; };
 		D5BC72CE1F2BDCEA0093BA5C /* ListFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */; };
+		D5BC72D01F2C59800093BA5C /* PayForGroceriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CF1F2C59800093BA5C /* PayForGroceriesController.swift */; };
 		DEF025C91F281FAA00574FC3 /* AddGroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF025C81F281FAA00574FC3 /* AddGroceryController.swift */; };
 		DEF025D61F294E6900574FC3 /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF025D51F294E6900574FC3 /* Kanna.framework */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		D5BC72C81F2BCBC90093BA5C /* FindListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FindListController.swift; path = ../FindListController.swift; sourceTree = "<group>"; };
 		D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListFormController.swift; sourceTree = "<group>"; };
+		D5BC72CF1F2C59800093BA5C /* PayForGroceriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayForGroceriesController.swift; sourceTree = "<group>"; };
 		DEF025C81F281FAA00574FC3 /* AddGroceryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroceryController.swift; sourceTree = "<group>"; };
 		DEF025D51F294E6900574FC3 /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = "../../Library/Developer/Xcode/DerivedData/Botelle-beimggltidceckdiovawkbygypam/Build/Products/Debug-iphonesimulator/Kanna/Kanna.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +165,7 @@
 				D52701F61F2BC05500639427 /* LoginViewController.swift */,
 				D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */,
 				D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */,
+				D5BC72CF1F2C59800093BA5C /* PayForGroceriesController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 			files = (
 				D5BC72CE1F2BDCEA0093BA5C /* ListFormController.swift in Sources */,
 				D5BC72CC1F2BCF220093BA5C /* SignupViewController.swift in Sources */,
+				D5BC72D01F2C59800093BA5C /* PayForGroceriesController.swift in Sources */,
 				D5BC72C91F2BCBC90093BA5C /* FindListController.swift in Sources */,
 				D21EAE6E1F27EE8E0072358E /* ViewController.swift in Sources */,
 				D52701F71F2BC05500639427 /* LoginViewController.swift in Sources */,

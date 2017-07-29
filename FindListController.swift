@@ -89,7 +89,7 @@ class FindListController: UIViewController, UITableViewDelegate, UITableViewData
                 let value = snapshot.value as! NSArray
                 
                 let new_users = value.adding(Auth.auth().currentUser?.email)
-                self.ref.child("Users/\(user_email)/list/\(cell_text)").setValue(true)
+                self.ref.child("Users/\(user_email)/list/").setValue(cell_text)
                 self.ref.child("Shopping List/\(cell_text)/users").setValue(new_users)
                 
                 //ref.child("Shopping List/\(cell?.textLabel?.text)/users").setValue([Auth.auth().currentUser?.email])

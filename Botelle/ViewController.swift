@@ -8,10 +8,13 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class ViewController: UITableViewController {
     
     var myArray: [String] = []
+    let ref = Database.database().reference()
+    var list_name: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +25,27 @@ class ViewController: UITableViewController {
         let addItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addGrocery))
         self.navigationItem.rightBarButtonItem = addItem
         self.title = "Botelle"
+        
+        let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
+        ref.child("Users/\(email_name)/list").observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as! NSString
+            self.list_name = value as String!
+            self.ref.child("Shopping List/\(value)/grocery_list").observe(DataEventType.value, with: { (snapshot2) in
+                if let value2 = snapshot2.value! as? [String] {
+                    self.myArray = value2
+                    self.tableView.reloadData()
+                }
+            })
+        })
     
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if (list_name != nil) {
+            ref.child("Shopping List/\(list_name!)/grocery_list").setValue(myArray)
+        }
     }
 
     override func didReceiveMemoryWarning() {

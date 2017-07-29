@@ -19,16 +19,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
-        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()
         
-        if Auth.auth().currentUser != nil {
-            //window?.rootViewController = UINavigationController(rootViewController: ViewController())
-            window?.rootViewController = UINavigationController(rootViewController: FindListController())
-        } else {
+        let userDefaults = UserDefaults.standard
+        if userDefaults.value(forKey: "appFirstTimeOpend") == nil {
+            //if app is first time opened then it will be nil
+            userDefaults.setValue(true, forKey: "appFirstTimeOpend")
+            // signOut from FIRAuth
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                
+            }
+            // go to beginning of app
             window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        } else {
+            //go to where you want
+            if Auth.auth().currentUser != nil {
+                window?.rootViewController = UINavigationController(rootViewController: ViewController())
+                //window?.rootViewController = UINavigationController(rootViewController: FindListController())
+            } else {
+                window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            }
         }
         
         

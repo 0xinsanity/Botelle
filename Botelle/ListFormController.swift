@@ -44,7 +44,7 @@ class ListFormController: UIViewController {
         let user_email = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
         ref.child("Shopping List/\(communityNameField.text!)/area").setValue(locationField.text!)
         ref.child("Shopping List/\(communityNameField.text!)/users").setValue([Auth.auth().currentUser?.email])
-        ref.child("Users/\(user_email)/list/\(communityNameField.text!)").setValue(true)
+        ref.child("Users/\(user_email)/list/").setValue(communityNameField.text!)
         
         self.present(UINavigationController(rootViewController: ViewController()), animated: true, completion: nil)
         //self.navigationController?.popViewController(animated: true)

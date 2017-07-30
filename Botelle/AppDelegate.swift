@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
-        STPPaymentConfiguration.shared().publishableKey = "pk_test_ESqRf9K8NIVc7pl2MvgDWBBg"
-        STPPaymentConfiguration.shared().appleMerchantIdentifier = "your apple merchant identifier"
+        STPPaymentConfiguration.shared().publishableKey = "pk_test_q9QwQOEzQsQDAqk85enkygy9"
+        STPPaymentConfiguration.shared().appleMerchantIdentifier = "merchant.BotelleService"
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white

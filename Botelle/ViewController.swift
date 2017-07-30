@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import Stripe
 
 class ViewController: UITableViewController {
     
@@ -175,6 +176,25 @@ class ViewController: UITableViewController {
         
         self.present(alertView, animated: true, completion: nil)
     }
+    
+    
+    /*func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
+        let baseURL = URL(fileURLWithPath: "http://")
+        
+        let url = baseURL.appendingPathComponent("ephemeral_keys")
+        Alamofire.request(url, method: .post, parameters: [
+            "api_version": apiVersion
+            ])
+            .validate(statusCode: 200..<300)
+            .responseJSON { responseJSON in
+                switch responseJSON.result {
+                case .success(let json):
+                    completion(json as? [String: AnyObject], nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
+        }
+    }*/
     
 }
 

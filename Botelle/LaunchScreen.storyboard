@@ -21,20 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.png" translatesAutoresizingMaskIntoConstraints="NO" id="Bf1-Bh-0He">
-                                <rect key="frame" x="74" y="293" width="228" height="82"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="text.png" translatesAutoresizingMaskIntoConstraints="NO" id="Bf1-Bh-0He">
+                                <rect key="frame" x="73" y="419" width="228" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="hhy-qJ-YdQ">
-                                <rect key="frame" x="74" y="119" width="228" height="177"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="hhy-qJ-YdQ">
+                                <rect key="frame" x="73" y="207" width="228" height="177"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Bf1-Bh-0He" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6Ez-Od-5aU"/>
-                            <constraint firstItem="hhy-qJ-YdQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="K9C-bA-9Ip"/>
-                            <constraint firstItem="Bf1-Bh-0He" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="tUT-5k-Ygz"/>
-                            <constraint firstItem="hhy-qJ-YdQ" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="99" id="xrK-rz-u7f"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

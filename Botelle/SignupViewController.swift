@@ -20,7 +20,6 @@ class SignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         emailField = UITextField(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 40))
         emailField.placeholder = "Enter Email"
         if #available(iOS 10.0, *) {

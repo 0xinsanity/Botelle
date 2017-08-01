@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import Firebase
+import Material
 
 class ListFormController: UIViewController {
     var locationField: UITextField!
@@ -46,7 +47,7 @@ class ListFormController: UIViewController {
         ref.child("Shopping List/\(communityNameField.text!)/users").setValue([Auth.auth().currentUser?.email])
         ref.child("Users/\(user_email)/list/").setValue(communityNameField.text!)
         
-        self.present(UINavigationController(rootViewController: ViewController()), animated: true, completion: nil)
+        self.present(NavigationController(rootViewController: ViewController()), animated: true, completion: nil)
         //self.navigationController?.popViewController(animated: true)
     }
 }

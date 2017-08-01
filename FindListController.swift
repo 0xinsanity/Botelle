@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import FirebaseDatabase
+import Material
 
 class FindListController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
@@ -28,7 +29,7 @@ class FindListController: UIViewController, UITableViewDelegate, UITableViewData
             let value = snapshot.value as? NSString
             
             if value != nil {
-                self.present(UINavigationController(rootViewController: ViewController()), animated: true, completion: nil)
+                self.present(NavigationController(rootViewController: ViewController()), animated: true, completion: nil)
                 return
             }
             // ...
@@ -113,7 +114,7 @@ class FindListController: UIViewController, UITableViewDelegate, UITableViewData
                 print(error.localizedDescription)
             }
             
-            self.present(UINavigationController(rootViewController: ViewController()), animated: true, completion: nil)
+            self.present(NavigationController(rootViewController: ViewController()), animated: true, completion: nil)
         }
         
         searchController.searchBar.resignFirstResponder()

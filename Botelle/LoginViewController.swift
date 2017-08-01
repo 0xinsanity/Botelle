@@ -9,40 +9,72 @@
 import Foundation
 import Firebase
 import UIKit
+import Material
+import PureLayout
 
 class LoginViewController: UIViewController {
-    var emailField: UITextField!
-    var passwordField: UITextField!
+    var emailField: TextField!
+    var passwordField: TextField!
     var loginButton: UIButton!
     var signupButton: UIButton!
+    var logo: UIImageView!
+    var text_logo_placeholder: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Login Page"
+        self.navigationController?.navigationBar.isHidden = true
         
-        emailField = UITextField(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 40))
+        emailField = TextField(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 40))
         emailField.placeholder = "Enter Email"
         if #available(iOS 10.0, *) {
             emailField.textContentType = UITextContentType.emailAddress
         }
+        emailField.opacity = 0
         self.view.addSubview(emailField)
         
-        passwordField = UITextField(frame: CGRect(x: 0, y: 190, width: self.view.frame.width, height: 40))
+        passwordField = TextField(frame: CGRect(x: 0, y: 220, width: self.view.frame.width, height: 40))
         passwordField.placeholder = "Enter Password"
         passwordField.isSecureTextEntry = true
+        passwordField.opacity = 0
         self.view.addSubview(passwordField)
         
-        loginButton = UIButton(frame: CGRect(x:0 , y: 250, width: self.view.frame.width/2, height: 30))
+        loginButton = FlatButton(frame: CGRect(x:0 , y: 280, width: self.view.frame.width/2, height: 30))
         loginButton.backgroundColor = UIColor.blue
         loginButton.setTitle("Login", for: UIControlState.normal)
+        loginButton.opacity = 0
         loginButton.addTarget(self, action: #selector(login), for: UIControlEvents.touchUpInside)
         self.view.addSubview(loginButton)
         
-        signupButton = UIButton(frame: CGRect(x:self.view.frame.width/2 , y: 250, width: self.view.frame.width/2, height: 30))
+        signupButton = FlatButton(frame: CGRect(x:self.view.frame.width/2 , y: 280, width: self.view.frame.width/2, height: 30))
         signupButton.backgroundColor = UIColor.blue
         signupButton.setTitle("Signup", for: UIControlState.normal)
         signupButton.addTarget(self, action: #selector(signup), for: UIControlEvents.touchUpInside)
+        signupButton.opacity = 0
         self.view.addSubview(signupButton)
+        
+        
+        logo = UIImageView(image: UIImage(named: "logo.png"))
+        self.view.addSubview(logo)
+        
+        text_logo_placeholder = UIImageView(image: UIImage(named: "text.png"))
+        text_logo_placeholder.isHidden = true
+        self.view.addSubview(text_logo_placeholder)
+        
+        text_logo_placeholder.autoCenterInSuperview()
+        logo.autoPinEdge(ALEdge.bottom, to: ALEdge.top, of: text_logo_placeholder)
+        logo.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.logo.removeFromSuperview()
+            self.view.addSubview(self.logo)
+            self.logo.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
+            self.logo.autoPinEdge(toSuperviewMargin: ALEdge.top)
+        }) { (bool) in
+            self.emailField.animate(MotionAnimation.fadeIn)
+            self.passwordField.animate(MotionAnimation.fadeIn)
+            self.signupButton.animate(MotionAnimation.fadeIn)
+            self.loginButton.animate(MotionAnimation.fadeIn)
+        }
         
     }
     
@@ -51,7 +83,7 @@ class LoginViewController: UIViewController {
             // ...
             if error == nil {
                // Move on
-                self.navigationController?.present(UINavigationController(rootViewController: FindListController()), animated: true, completion: nil)
+                self.navigationController?.present(NavigationController(rootViewController: FindListController()), animated: true, completion: nil)
                 
             } else {
                 var error_message: String = ""

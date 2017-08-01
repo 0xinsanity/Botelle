@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import Stripe
+import Material
 
 class ViewController: UITableViewController {
     
@@ -146,7 +147,7 @@ class ViewController: UITableViewController {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
-            self.present(UINavigationController(rootViewController: LoginViewController()), animated: true, completion: nil)
+            self.present(NavigationController(rootViewController: LoginViewController()), animated: true, completion: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }

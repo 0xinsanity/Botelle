@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import UIKit
+import Material
 
 class SignupViewController: UIViewController {
     var emailField: UITextField!
@@ -18,6 +19,7 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         emailField = UITextField(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 40))
         emailField.placeholder = "Enter Email"
@@ -49,7 +51,7 @@ class SignupViewController: UIViewController {
             Auth.auth().createUser(withEmail: emailField.text!.trimmingCharacters(in: .whitespaces), password: passwordField.text!) { (user, error) in
                 if error == nil {
                     // Move on
-                    self.navigationController?.present(UINavigationController(rootViewController: FindListController()), animated: true, completion: nil)
+                    self.navigationController?.present(NavigationController(rootViewController: FindListController()), animated: true, completion: nil)
                     
                 } else {
                     var error_message: String = ""

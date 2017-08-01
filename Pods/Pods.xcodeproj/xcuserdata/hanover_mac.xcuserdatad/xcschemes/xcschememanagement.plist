@@ -19,7 +19,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Material-com.cosmicmind.material.fonts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Material-com.cosmicmind.material.icons.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Material.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Botelle.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PureLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,12 +62,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>043B3904684A4B5B472581B6D9649FCC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>44FB459948D604FC7A3B5E8251B01858</key>
+		<key>1959D0A117F2FBB2EAC66774CFE2E043</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1B80E0D382594EF923C4A088C533CF55</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3F76F50DE3E4A45C16FBF3444BE8E099</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,7 +92,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AA2AB6F1650759CC4F3BBFF3C24B9972</key>
+		<key>67E68878F474C375F89FE2D48A99FF1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A8619F9EFF464D8E4FA585EC568FA5F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,12 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DA78379CCE211AB6637C51F0FBBA5E94</key>
+		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
+		<key>FDB76CFA751A0C9AF2980C217D2C0F67</key>
 		<dict>
 			<key>primary</key>
 			<true/>

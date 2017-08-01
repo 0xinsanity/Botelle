@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Stripe
+import Material
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,14 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
             // go to beginning of app
-            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            window?.rootViewController = NavigationController(rootViewController: LoginViewController())
         } else {
             //go to where you want
             if Auth.auth().currentUser != nil {
-                window?.rootViewController = UINavigationController(rootViewController: ViewController())
-                //window?.rootViewController = UINavigationController(rootViewController: FindListController())
+                window?.rootViewController = NavigationController(rootViewController: ViewController())
+                //window?.rootViewController = NavigationController(rootViewController: FindListController())
             } else {
-                window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+                window?.rootViewController = NavigationController(rootViewController: LoginViewController())
             }
         }
         

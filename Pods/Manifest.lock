@@ -35,11 +35,15 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.11)
   - Kanna (2.1.1)
+  - Material (2.8.0):
+    - Material/Core (= 2.8.0)
+  - Material/Core (2.8.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - PureLayout (3.0.2)
   - Stripe (11.2.0)
 
 DEPENDENCIES:
@@ -47,6 +51,8 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Kanna (~> 2.1.0)
+  - Material (~> 2.0)
+  - PureLayout
   - Stripe
 
 SPEC CHECKSUMS:
@@ -59,9 +65,11 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   Kanna: 9b4b086c218703f2b94f5b21a466217dd2f9332e
+  Material: 9ad6479e6b07af97dfa7ca0e5aca0e810917e1cd
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   Stripe: 898f83a95d72180c6eb4acd65b2ae6158fc6a8bd
 
-PODFILE CHECKSUM: 3cd007393c9d7b37ae07f863efae3249ff07d713
+PODFILE CHECKSUM: 4e6c00ea1730c68f35d52b32c8953f16fa398448
 
 COCOAPODS: 1.2.0

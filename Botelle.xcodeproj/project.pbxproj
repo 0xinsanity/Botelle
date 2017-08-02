@@ -14,6 +14,7 @@
 		D21EAE8C1F27EE8F0072358E /* BotelleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE8B1F27EE8F0072358E /* BotelleUITests.swift */; };
 		D52701F51F2BBFD300639427 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D52701F41F2BBFD300639427 /* GoogleService-Info.plist */; };
 		D52701F71F2BC05500639427 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52701F61F2BC05500639427 /* LoginViewController.swift */; };
+		D535B4531F3154B000029C6F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D535B4521F3154B000029C6F /* CoreLocation.framework */; };
 		D5BC72C91F2BCBC90093BA5C /* FindListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72C81F2BCBC90093BA5C /* FindListController.swift */; };
 		D5BC72CC1F2BCF220093BA5C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */; };
 		D5BC72CE1F2BDCEA0093BA5C /* ListFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */; };
@@ -23,6 +24,8 @@
 		D5BC72DC1F3030880093BA5C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D5BC72DA1F3030880093BA5C /* logo.png */; };
 		D5BC72DD1F3030880093BA5C /* text.png in Resources */ = {isa = PBXBuildFile; fileRef = D5BC72DB1F3030880093BA5C /* text.png */; };
 		D5BC72E01F3031F20093BA5C /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5BC72DF1F3031F20093BA5C /* PureLayout.framework */; };
+		D5BC72E31F30DF090093BA5C /* ProximaNova-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5BC72E11F30DF090093BA5C /* ProximaNova-Reg.ttf */; };
+		D5BC72E41F30DF090093BA5C /* ProximaNova-Sbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5BC72E21F30DF090093BA5C /* ProximaNova-Sbold.ttf */; };
 		DEF025C91F281FAA00574FC3 /* AddGroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF025C81F281FAA00574FC3 /* AddGroceryController.swift */; };
 		DEF025D61F294E6900574FC3 /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF025D51F294E6900574FC3 /* Kanna.framework */; };
 		FFC96C194719912E2D34E1F0 /* Pods_Botelle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E13B3C2D99742D59DDB19A /* Pods_Botelle.framework */; };
@@ -62,6 +65,7 @@
 		D21EAE8D1F27EE8F0072358E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D52701F41F2BBFD300639427 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D52701F61F2BC05500639427 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D535B4521F3154B000029C6F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D5BC72C81F2BCBC90093BA5C /* FindListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FindListController.swift; path = ../FindListController.swift; sourceTree = "<group>"; };
 		D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListFormController.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 		D5BC72DA1F3030880093BA5C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		D5BC72DB1F3030880093BA5C /* text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text.png; sourceTree = "<group>"; };
 		D5BC72DF1F3031F20093BA5C /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = "Pods/../build/Debug-iphoneos/PureLayout/PureLayout.framework"; sourceTree = "<group>"; };
+		D5BC72E11F30DF090093BA5C /* ProximaNova-Reg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Reg.ttf"; sourceTree = "<group>"; };
+		D5BC72E21F30DF090093BA5C /* ProximaNova-Sbold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Sbold.ttf"; sourceTree = "<group>"; };
 		DEF025C81F281FAA00574FC3 /* AddGroceryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroceryController.swift; sourceTree = "<group>"; };
 		DEF025D51F294E6900574FC3 /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = "../../Library/Developer/Xcode/DerivedData/Botelle-beimggltidceckdiovawkbygypam/Build/Products/Debug-iphonesimulator/Kanna/Kanna.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D535B4531F3154B000029C6F /* CoreLocation.framework in Frameworks */,
 				D5BC72E01F3031F20093BA5C /* PureLayout.framework in Frameworks */,
 				D5BC72D61F3025760093BA5C /* Material.framework in Frameworks */,
 				D5BC72D71F3025760093BA5C /* Stripe.framework in Frameworks */,
@@ -186,6 +193,8 @@
 		D5BC72DE1F3030E90093BA5C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D5BC72E11F30DF090093BA5C /* ProximaNova-Reg.ttf */,
+				D5BC72E21F30DF090093BA5C /* ProximaNova-Sbold.ttf */,
 				D5BC72DA1F3030880093BA5C /* logo.png */,
 				D5BC72DB1F3030880093BA5C /* text.png */,
 			);
@@ -195,6 +204,7 @@
 		FF875D5B40EDAFAB4CE7D098 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D535B4521F3154B000029C6F /* CoreLocation.framework */,
 				D5BC72DF1F3031F20093BA5C /* PureLayout.framework */,
 				D5BC72D41F3025760093BA5C /* Material.framework */,
 				D5BC72D51F3025760093BA5C /* Stripe.framework */,
@@ -326,6 +336,8 @@
 				D5BC72DD1F3030880093BA5C /* text.png in Resources */,
 				D5BC72D91F302F020093BA5C /* LaunchScreen.storyboard in Resources */,
 				D52701F51F2BBFD300639427 /* GoogleService-Info.plist in Resources */,
+				D5BC72E41F30DF090093BA5C /* ProximaNova-Sbold.ttf in Resources */,
+				D5BC72E31F30DF090093BA5C /* ProximaNova-Reg.ttf in Resources */,
 				D21EAE731F27EE8F0072358E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

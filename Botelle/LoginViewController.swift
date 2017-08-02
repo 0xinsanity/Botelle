@@ -12,7 +12,9 @@ import UIKit
 import Material
 import PureLayout
 
-class LoginViewController: UIViewController {
+let teal = UIColor(rgb: 0x5A9B90)
+
+class LoginViewController: UIViewController, UITextFieldDelegate {
     var emailField: TextField!
     var passwordField: TextField!
     var loginButton: RaisedButton!
@@ -20,52 +22,64 @@ class LoginViewController: UIViewController {
     var logo: UIImageView!
     var welcomeBack: UILabel!
     var signintocontinue: UILabel!
-    let teal = UIColor(rgb: 0x5A9B90)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
+        hideKeyboardWhenTappedAround()
+        self.navigationController?.navigationBar.tintColor = teal
         welcomeBack = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         welcomeBack.text = "Welcome Back,"
         welcomeBack.textAlignment = .center
-        welcomeBack.font = UIFont.boldSystemFont(ofSize: 25)
+        welcomeBack.font = UIFont(name: "ProximaNova-Semibold", size: 28)
         welcomeBack.opacity = 0
         self.view.addSubview(welcomeBack)
         
         signintocontinue = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         signintocontinue.text = "Sign in to continue"
         signintocontinue.textAlignment = .center
-        signintocontinue.font = UIFont.systemFont(ofSize: 17)
+        signintocontinue.font = UIFont(name: "ProximaNova-Regular", size: 20)
         signintocontinue.textColor = UIColor.gray
         signintocontinue.opacity = 0
         self.view.addSubview(signintocontinue)
         
         emailField = TextField(frame: CGRect(x: 0, y: 140, width: self.view.frame.width*0.8, height: 40))
-        emailField.placeholder = "Enter Email"
+        emailField.placeholder = "Email"
+        emailField.dividerActiveColor = teal
+        emailField.placeholderActiveColor = teal
         if #available(iOS 10.0, *) {
             emailField.textContentType = UITextContentType.emailAddress
         }
         emailField.opacity = 0
+        emailField.delegate = self
         self.view.addSubview(emailField)
         
         passwordField = TextField(frame: CGRect(x: 0, y: 220, width: self.view.frame.width*0.8, height: 40))
-        passwordField.placeholder = "Enter Password"
+        passwordField.placeholder = "Password"
         passwordField.isSecureTextEntry = true
+        passwordField.placeholderActiveColor = teal
+        passwordField.dividerActiveColor = teal
         passwordField.opacity = 0
+        passwordField.delegate = self
         self.view.addSubview(passwordField)
         
         loginButton = RaisedButton(title: "Login", titleColor: UIColor.white)
         loginButton.backgroundColor = teal
         loginButton.opacity = 0
+        loginButton.pulseColor = UIColor.white
         loginButton.layer.cornerRadius = 10
-        loginButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.width*0.8, height: 50)
+        loginButton.titleLabel?.font = UIFont(name: "ProximaNova-Semibold", size: 20)
         loginButton.addTarget(self, action: #selector(login), for: UIControlEvents.touchUpInside)
         self.view.addSubview(loginButton)
+        view.layout(loginButton).width(self.view.frame.width*0.8).height(50)
         
         signupButton = UIButton(frame: CGRect(x:self.view.frame.width/2 , y: 280, width: self.view.frame.width/2, height: 30))
         let signup_string = NSMutableAttributedString(string: "New user? Sign up")
         signup_string.addAttribute(NSForegroundColorAttributeName, value: teal, range: NSRange(location: 10, length: 7))
-        signup_string.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 18), range: NSRange(location: 10, length: 7))
+        signup_string.addAttribute(NSFontAttributeName, value: UIFont(name: "ProximaNova-Semibold", size: 17), range: NSRange(location: 10, length: 7))
+        signup_string.addAttribute(NSFontAttributeName, value: UIFont(name: "ProximaNova-Regular", size: 17), range: NSRange(location: 0, length: 10))
         signupButton.setAttributedTitle(signup_string, for: UIControlState.normal)
         signupButton.addTarget(self, action: #selector(signup), for: UIControlEvents.touchUpInside)
         signupButton.opacity = 0
@@ -77,11 +91,11 @@ class LoginViewController: UIViewController {
         self.view.addSubview(logo)
         
         welcomeBack.autoPinEdge(.top, to: .bottom, of: logo, withOffset: -180, relation: NSLayoutRelation.equal)
-        signintocontinue.autoPinEdge(.top, to: .bottom, of: welcomeBack, withOffset: 15, relation: NSLayoutRelation.equal)
+        signintocontinue.autoPinEdge(.top, to: .bottom, of: welcomeBack, withOffset: 12, relation: NSLayoutRelation.equal)
         emailField.autoPinEdge(.top, to: .bottom, of: signintocontinue, withOffset: 45, relation: NSLayoutRelation.equal)
         passwordField.autoPinEdge(.top, to: .bottom, of: emailField, withOffset: 30, relation: NSLayoutRelation.equal)
         loginButton.autoPinEdge(.top, to: .bottom, of: passwordField, withOffset: 50, relation: NSLayoutRelation.equal)
-        signupButton.autoPinEdge(.top, to: .bottom, of: loginButton, withOffset: 20, relation: NSLayoutRelation.equal)
+        signupButton.autoPinEdge(.top, to: .bottom, of: loginButton, withOffset: 30, relation: NSLayoutRelation.equal)
         emailField.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
         passwordField.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
         loginButton.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
@@ -134,16 +148,31 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.isNavigationBarHidden = true
+        navigationController?.isMotionEnabled = true
+        navigationController?.motionNavigationTransitionType = MotionTransitionType.slide(direction: MotionTransitionType.Direction.right)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         self.navigationController?.isNavigationBarHidden = false
+        navigationController?.isMotionEnabled = true
+        navigationController?.motionNavigationTransitionType = MotionTransitionType.slide(direction: MotionTransitionType.Direction.left)
     }
     
     func signup() {
         self.navigationController?.pushViewController(SignupViewController(), animated: true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailField {
+            passwordField.becomeFirstResponder()
+            return false
+        } else if textField == passwordField {
+            login()
+            return true
+        }
+        return true
     }
     
 }
@@ -163,5 +192,18 @@ extension UIColor {
             green: (rgb >> 8) & 0xFF,
             blue: rgb & 0xFF
         )
+    }
+}
+
+// Put this piece of code anywhere you like
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

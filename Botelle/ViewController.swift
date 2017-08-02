@@ -25,24 +25,29 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.topItem?.title = "Botelle"
+        
         let logoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logout))
         self.navigationItem.leftBarButtonItem = logoutItem
         
         let addItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addGrocery))
         self.navigationItem.rightBarButtonItem = addItem
-        self.title = "Botelle"
         
         groceriesList = [email_name: []]
         
         ref.child("Users/\(email_name)/list").observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as! NSString
-            self.list_name = value as String!
-            self.ref.child("Shopping List/\(value)/grocery_list").observe(DataEventType.value, with: { (snapshot2) in
-                if let value2 = snapshot2.value! as? NSDictionary {
-                    self.groceriesList = value2 as! [String : [String]]
-                    self.tableView.reloadData()
-                }
-            })
+            if let svalue = snapshot.value as? NSString {
+                self.list_name = svalue as String!
+                self.ref.child("Shopping List/\(svalue)/grocery_list").observe(DataEventType.value, with: { (snapshot2) in
+                    if let value2 = snapshot2.value! as? NSDictionary {
+                        self.groceriesList = value2 as! [String : [String]]
+                        self.tableView.reloadData()
+                    }
+                })
+            } else {
+                self.navigationController?.present(NavigationController(rootViewController: FindListController()), animated: false, completion: nil)
+                return
+            }
         })
     
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")

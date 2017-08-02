@@ -15,6 +15,7 @@
 		D52701F51F2BBFD300639427 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D52701F41F2BBFD300639427 /* GoogleService-Info.plist */; };
 		D52701F71F2BC05500639427 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52701F61F2BC05500639427 /* LoginViewController.swift */; };
 		D535B4531F3154B000029C6F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D535B4521F3154B000029C6F /* CoreLocation.framework */; };
+		D535B4551F31839C00029C6F /* CreateNewListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B4541F31839C00029C6F /* CreateNewListController.swift */; };
 		D5BC72C91F2BCBC90093BA5C /* FindListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72C81F2BCBC90093BA5C /* FindListController.swift */; };
 		D5BC72CC1F2BCF220093BA5C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */; };
 		D5BC72CE1F2BDCEA0093BA5C /* ListFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */; };
@@ -66,6 +67,7 @@
 		D52701F41F2BBFD300639427 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D52701F61F2BC05500639427 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D535B4521F3154B000029C6F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D535B4541F31839C00029C6F /* CreateNewListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewListController.swift; sourceTree = "<group>"; };
 		D5BC72C81F2BCBC90093BA5C /* FindListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FindListController.swift; path = ../FindListController.swift; sourceTree = "<group>"; };
 		D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListFormController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				D52701F61F2BC05500639427 /* LoginViewController.swift */,
 				D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */,
 				D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */,
+				D535B4541F31839C00029C6F /* CreateNewListController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				D21EAE6E1F27EE8E0072358E /* ViewController.swift in Sources */,
 				D52701F71F2BC05500639427 /* LoginViewController.swift in Sources */,
 				DEF025C91F281FAA00574FC3 /* AddGroceryController.swift in Sources */,
+				D535B4551F31839C00029C6F /* CreateNewListController.swift in Sources */,
 				D21EAE6C1F27EE8E0072358E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

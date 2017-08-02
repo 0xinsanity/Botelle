@@ -74,7 +74,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         self.view.addSubview(repeatPasswordField)
         
         locationField = TextField(frame: CGRect(x: 0, y: 140, width: self.view.frame.width*0.8, height: 40))
-        locationField.placeholder = "Location"
+        locationField.placeholder = "Location (Address)"
         locationField.placeholderActiveColor = teal
         locationField.dividerActiveColor = teal
         locationField.delegate = self
@@ -90,6 +90,16 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         createAccountButton.pulseColor = UIColor.white
         view.layout(createAccountButton).width(self.view.frame.width*0.8).height(50)
         self.view.addSubview(createAccountButton)
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         nameField.autoPinEdge(.top, to: .top, of: view, withOffset: 100, relation: NSLayoutRelation.equal)
         emailField.autoPinEdge(.top, to: .bottom, of: nameField, withOffset: 40, relation: NSLayoutRelation.equal)
@@ -103,12 +113,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         repeatPasswordField.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
         locationField.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
         createAccountButton.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
-
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
     }
     
     func createAccount() {
@@ -130,18 +134,19 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
                 }
             })
             
-            let email_text = emailField.text!.trimmingCharacters(in: .whitespaces)
+            let email_text = emailField.text!.trimmingCharacters(in: .whitespaces).lowercased()
+            let email_no_period = emailField.text!.replacingOccurrences(of: ".", with: "_").lowercased()
             Auth.auth().createUser(withEmail: email_text, password: passwordField.text!) { (user, error) in
                 if error == nil {
                     // Move on
                     
                     let ref = Database.database().reference()
-                    ref.child("Users/\(email_text)/full_name/").setValue(self.nameField.text)
+                    ref.child("Users/\(email_no_period)/full_name/").setValue(self.nameField.text)
                     
                     if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) {
-                        ref.child("Users/\(email_text)/location/").setValue(full_address)
+                        ref.child("Users/\(email_no_period)/location/").setValue(full_address)
                     } else {
-                        ref.child("Users/\(email_text)/location/").setValue(self.locationField.text)
+                        ref.child("Users/\(email_no_period)/location/").setValue(self.locationField.text)
                     }
                 
                     self.navigationController?.present(NavigationController(rootViewController: FindListController()), animated: true, completion: nil)
@@ -197,8 +202,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
             locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
             
             locationManager.startUpdatingLocation()
-            print(locationManager.location?.coordinate.latitude)
-            print(locationManager.location?.coordinate.longitude)
         }
     }
     

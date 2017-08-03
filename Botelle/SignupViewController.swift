@@ -144,9 +144,10 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
                     ref.child("Users/\(email_no_period)/full_name/").setValue(self.nameField.text)
                     
                     if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) {
-                        ref.child("Users/\(email_no_period)/location/").setValue(full_address)
+                        ref.child("Users/\(email_no_period)/location/").setValue(["address": full_address, "longitude": Double(address_location.coordinate.longitude), "latitude": Double(address_location.coordinate.latitude)])
                     } else {
-                        ref.child("Users/\(email_no_period)/location/").setValue(self.locationField.text)
+                        // TODO:: IMPLEMENT MANUAL INPUT
+                        //ref.child("Users/\(email_no_period)/location/").setValue(["address": self.locationField.text, "longitude": address_location.coordinate.longitude, "latitude": address_location.coordinate.latitude])
                     }
                 
                     self.navigationController?.present(NavigationController(rootViewController: FindListController()), animated: true, completion: nil)

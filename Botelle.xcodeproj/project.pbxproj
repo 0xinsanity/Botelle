@@ -14,21 +14,16 @@
 		D21EAE8C1F27EE8F0072358E /* BotelleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE8B1F27EE8F0072358E /* BotelleUITests.swift */; };
 		D52701F51F2BBFD300639427 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D52701F41F2BBFD300639427 /* GoogleService-Info.plist */; };
 		D52701F71F2BC05500639427 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52701F61F2BC05500639427 /* LoginViewController.swift */; };
-		D535B4531F3154B000029C6F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D535B4521F3154B000029C6F /* CoreLocation.framework */; };
 		D535B4551F31839C00029C6F /* CreateNewListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B4541F31839C00029C6F /* CreateNewListController.swift */; };
 		D5BC72C91F2BCBC90093BA5C /* FindListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72C81F2BCBC90093BA5C /* FindListController.swift */; };
 		D5BC72CC1F2BCF220093BA5C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */; };
 		D5BC72CE1F2BDCEA0093BA5C /* ListFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */; };
-		D5BC72D61F3025760093BA5C /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5BC72D41F3025760093BA5C /* Material.framework */; };
-		D5BC72D71F3025760093BA5C /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5BC72D51F3025760093BA5C /* Stripe.framework */; };
 		D5BC72D91F302F020093BA5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BC72D81F302F020093BA5C /* LaunchScreen.storyboard */; };
 		D5BC72DC1F3030880093BA5C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D5BC72DA1F3030880093BA5C /* logo.png */; };
 		D5BC72DD1F3030880093BA5C /* text.png in Resources */ = {isa = PBXBuildFile; fileRef = D5BC72DB1F3030880093BA5C /* text.png */; };
-		D5BC72E01F3031F20093BA5C /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5BC72DF1F3031F20093BA5C /* PureLayout.framework */; };
 		D5BC72E31F30DF090093BA5C /* ProximaNova-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5BC72E11F30DF090093BA5C /* ProximaNova-Reg.ttf */; };
 		D5BC72E41F30DF090093BA5C /* ProximaNova-Sbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5BC72E21F30DF090093BA5C /* ProximaNova-Sbold.ttf */; };
 		DEF025C91F281FAA00574FC3 /* AddGroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF025C81F281FAA00574FC3 /* AddGroceryController.swift */; };
-		DEF025D61F294E6900574FC3 /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF025D51F294E6900574FC3 /* Kanna.framework */; };
 		FFC96C194719912E2D34E1F0 /* Pods_Botelle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E13B3C2D99742D59DDB19A /* Pods_Botelle.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +63,7 @@
 		D52701F61F2BC05500639427 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D535B4521F3154B000029C6F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D535B4541F31839C00029C6F /* CreateNewListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewListController.swift; sourceTree = "<group>"; };
+		D535B4561F322EE400029C6F /* M13Checkbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13Checkbox.framework; path = "../../Library/Developer/Xcode/DerivedData/Botelle-bzuaadvdaljkdcfmoyybyipxnqxw/Build/Products/Debug-iphoneos/M13Checkbox/M13Checkbox.framework"; sourceTree = "<group>"; };
 		D5BC72C81F2BCBC90093BA5C /* FindListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FindListController.swift; path = ../FindListController.swift; sourceTree = "<group>"; };
 		D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		D5BC72CD1F2BDCEA0093BA5C /* ListFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListFormController.swift; sourceTree = "<group>"; };
@@ -89,11 +85,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D535B4531F3154B000029C6F /* CoreLocation.framework in Frameworks */,
-				D5BC72E01F3031F20093BA5C /* PureLayout.framework in Frameworks */,
-				D5BC72D61F3025760093BA5C /* Material.framework in Frameworks */,
-				D5BC72D71F3025760093BA5C /* Stripe.framework in Frameworks */,
-				DEF025D61F294E6900574FC3 /* Kanna.framework in Frameworks */,
 				FFC96C194719912E2D34E1F0 /* Pods_Botelle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +198,7 @@
 		FF875D5B40EDAFAB4CE7D098 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D535B4561F322EE400029C6F /* M13Checkbox.framework */,
 				D535B4521F3154B000029C6F /* CoreLocation.framework */,
 				D5BC72DF1F3031F20093BA5C /* PureLayout.framework */,
 				D5BC72D41F3025760093BA5C /* Material.framework */,

@@ -25,7 +25,6 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.topItem?.title = "Botelle"
         
         let logoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logout))
         self.navigationItem.leftBarButtonItem = logoutItem
@@ -35,21 +34,43 @@ class ViewController: UITableViewController {
         
         groceriesList = [email_name: []]
         
-        ref.child("Users/\(email_name)/list").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let svalue = snapshot.value as? NSString {
-                self.list_name = svalue as String!
-                self.ref.child("Shopping List/\(svalue)/grocery_list").observe(DataEventType.value, with: { (snapshot2) in
-                    if let value2 = snapshot2.value! as? NSDictionary {
-                        self.groceriesList = value2 as! [String : [String]]
-                        self.tableView.reloadData()
+        
+        ref.child("Users/\(email_name)/lists").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let svalue = snapshot.value! as? [String] {
+                self.list_name = svalue[0] as String!
+                self.navigationController?.navigationBar.topItem?.title = self.list_name
+                self.ref.child("Shopping List/\(self.list_name!)/requests").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+                    // TODO: Implement request system
+                    if let users_notinputted = snapshot.value as? [String] {
+                    for user_notinputted in users_notinputted {
+                            if (user_notinputted == self.email_name) {
+                                // TODO: Figure out what to do when not permitted yet
+                                self.ref.child("Shopping List/\(self.list_name!)/grocery_list").observe(DataEventType.value, with: { (snapshot2) in
+                                    if let value2 = snapshot2.value! as? NSDictionary {
+                                        self.groceriesList = value2 as! [String : [String]]
+                                        self.tableView.reloadData()
+                                    }
+                                })
+                            } else {
+                                self.ref.child("Shopping List/\(svalue)/grocery_list").observe(DataEventType.value, with: { (snapshot2) in
+                                    if let value2 = snapshot2.value! as? NSDictionary {
+                                        self.groceriesList = value2 as! [String : [String]]
+                                        self.tableView.reloadData()
+                                    }
+                            })
+                        }
+                        }
                     }
+                    
+                    
+                    
                 })
             } else {
                 self.navigationController?.present(NavigationController(rootViewController: FindListController()), animated: false, completion: nil)
                 return
             }
         })
-    
+        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         pay_for_goods = UIButton(frame: CGRect(x: 10, y: self.view.frame.height-100, width: self.view.frame.width-20, height: 40))

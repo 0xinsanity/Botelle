@@ -12,6 +12,7 @@ import UIKit
 import Material
 import PureLayout
 import CoreLocation
+import M13Checkbox
 
 class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
     var nameField: TextField!
@@ -20,6 +21,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
     var repeatPasswordField: TextField!
     var locationField: TextField!
     var createAccountButton: RaisedButton!
+    var locationCheckBox: M13Checkbox!
+    var currentLocationLabel: UILabel!
     var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
@@ -78,7 +81,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         locationField.placeholderActiveColor = teal
         locationField.dividerActiveColor = teal
         locationField.delegate = self
-        locationField.addTarget(self, action: #selector(getLocation), for: UIControlEvents.allTouchEvents)
         self.view.addSubview(locationField)
         
         createAccountButton = RaisedButton(frame: CGRect(x:200 , y: 290, width: self.view.frame.width/2, height: 30))
@@ -90,6 +92,34 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         createAccountButton.pulseColor = UIColor.white
         view.layout(createAccountButton).width(self.view.frame.width*0.8).height(50)
         self.view.addSubview(createAccountButton)
+        
+        locationCheckBox = M13Checkbox(frame: CGRect(x: 45, y: 430, width: 25, height: 25))
+        locationCheckBox.boxType = .square
+        locationCheckBox.markType = .checkmark
+        locationCheckBox.tintColor = teal
+        locationCheckBox.stateChangeAnimation = .flat(.fill)
+        locationCheckBox.addTarget(self, action: #selector(checkBoxToggle), for: UIControlEvents.valueChanged)
+        self.view.addSubview(locationCheckBox)
+        
+        currentLocationLabel = UILabel()
+        currentLocationLabel.text = "Use Current Location"
+        currentLocationLabel.font = UIFont(name: "ProximaNova-Regular", size: 15)
+        self.view.addSubview(currentLocationLabel)
+        
+        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) {
+            locationManager.startUpdatingLocation()
+            locationCheckBox.checkState = .checked
+            currentLocationLabel.textColor = teal
+            locationField.isUserInteractionEnabled = false
+            locationField.text = "Current Location"
+            locationField.textColor = .gray
+            currentLocationLabel.textColor = teal
+        } else {
+            locationCheckBox.checkState = .unchecked
+            currentLocationLabel.textColor = .gray
+        }
+        
+
 
     }
     
@@ -106,7 +136,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         passwordField.autoPinEdge(.top, to: .bottom, of: emailField, withOffset: 40, relation: NSLayoutRelation.equal)
         repeatPasswordField.autoPinEdge(.top, to: .bottom, of: passwordField, withOffset: 40, relation: NSLayoutRelation.equal)
         locationField.autoPinEdge(.top, to: .bottom, of: repeatPasswordField, withOffset: 40, relation: NSLayoutRelation.equal)
-        createAccountButton.autoPinEdge(.top, to: .bottom, of: locationField, withOffset: 40, relation: NSLayoutRelation.equal)
+        createAccountButton.autoPinEdge(.top, to: .bottom, of: locationField, withOffset: 60, relation: NSLayoutRelation.equal)
+        currentLocationLabel.autoPinEdge(.top, to: .bottom, of: locationField, withOffset: 15, relation: NSLayoutRelation.equal)
+        currentLocationLabel.autoPinEdge(.left, to: .right, of: locationCheckBox, withOffset: 8, relation: NSLayoutRelation.equal)
         nameField.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
         emailField.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
         passwordField.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
@@ -115,39 +147,82 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         createAccountButton.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
     }
     
+    
+    func checkBoxToggle() {
+        switch locationCheckBox.checkState {
+        case .checked:
+            if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedAlways) {
+                locationManager.requestAlwaysAuthorization()
+            }
+            locationManager.startUpdatingLocation()
+            currentLocationLabel.textColor = teal
+            locationField.isUserInteractionEnabled = false
+            locationField.text = "Current Location"
+            locationField.textColor = .gray
+            currentLocationLabel.textColor = teal
+            break
+        default:
+            locationManager.stopUpdatingLocation()
+            locationCheckBox.checkState = .unchecked
+            currentLocationLabel.textColor = .gray
+            locationField.isUserInteractionEnabled = true
+            locationField.text = ""
+            locationField.textColor = .black
+            break
+        }
+    }
+    
     func createAccount() {
         if (passwordField.text! == repeatPasswordField.text! && passwordField.text != "" && nameField.text != "" && emailField.text! != "" && locationField.text! != "") {
-            let address_location = CLLocation(latitude: (self.locationManager.location?.coordinate.latitude)!, longitude: (self.locationManager.location?.coordinate.longitude)!)
-            let geo = CLGeocoder()
-            
-            var full_address = ""
-            geo.reverseGeocodeLocation(address_location, completionHandler: { (placemarks, error) in
-                let placemark = placemarks?[0]
-                if ((placemark) != nil) {
-                    full_address = (placemark?.addressDictionary?["FormattedAddressLines"] as! [String]).joined(separator: ", ")
-                } else {
-                    let alertView = UIAlertController(title: "Error", message: "We could not find your location. Please input it manually.", preferredStyle: UIAlertControllerStyle.alert)
-                    let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
-                    alertView.addAction(okButton)
-                    self.present(alertView, animated: true, completion: nil)
-                    return
-                }
-            })
             
             let email_text = emailField.text!.trimmingCharacters(in: .whitespaces).lowercased()
+            let fullname_text = nameField.text!.trimmingCharacters(in: .whitespaces)
             let email_no_period = emailField.text!.replacingOccurrences(of: ".", with: "_").lowercased()
             Auth.auth().createUser(withEmail: email_text, password: passwordField.text!) { (user, error) in
                 if error == nil {
                     // Move on
                     
                     let ref = Database.database().reference()
-                    ref.child("Users/\(email_no_period)/full_name/").setValue(self.nameField.text)
+                    ref.child("Users/\(email_no_period)/full_name/").setValue(fullname_text)
                     
-                    if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) {
-                        ref.child("Users/\(email_no_period)/location/").setValue(["address": full_address, "longitude": Double(address_location.coordinate.longitude), "latitude": Double(address_location.coordinate.latitude)])
+                    if (self.locationCheckBox.checkState == .checked) {
+                        let address_location = CLLocation(latitude: (self.locationManager.location?.coordinate.latitude)!, longitude: (self.locationManager.location?.coordinate.longitude)!)
+                        let geo = CLGeocoder()
+                        
+                        var full_address = ""
+                        geo.reverseGeocodeLocation(address_location, completionHandler: { (placemarks, error) in
+                            let placemark = placemarks?[0]
+                            if ((placemark) != nil) {
+                                full_address = (placemark?.addressDictionary?["FormattedAddressLines"] as! [String]).joined(separator: ", ")
+                                
+                                ref.child("Users/\(email_no_period)/location/").setValue(["address": full_address, "longitude": Double(address_location.coordinate.longitude), "latitude": Double(address_location.coordinate.latitude)])
+                            } else {
+                                let alertView = UIAlertController(title: "Error", message: "We could not find your location. Please input it manually.", preferredStyle: UIAlertControllerStyle.alert)
+                                let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+                                alertView.addAction(okButton)
+                                self.present(alertView, animated: true, completion: nil)
+                                return
+                            }
+                        })
                     } else {
                         // TODO:: IMPLEMENT MANUAL INPUT
-                        //ref.child("Users/\(email_no_period)/location/").setValue(["address": self.locationField.text, "longitude": address_location.coordinate.longitude, "latitude": address_location.coordinate.latitude])
+                        let geoCoder = CLGeocoder()
+                        geoCoder.geocodeAddressString(self.locationField.text!) { (placemarks, error) in
+                            guard
+                                let placemarks = placemarks,
+                                let location = placemarks.first?.location
+                                else {
+                                    
+                                    let alertView = UIAlertController(title: "Error", message: "The address could not be found.", preferredStyle: UIAlertControllerStyle.alert)
+                                    let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+                                    alertView.addAction(okButton)
+                                    self.present(alertView, animated: true, completion: nil)
+                                    return
+                            }
+                            
+                            
+                            ref.child("Users/\(email_no_period)/location/").setValue(["address": self.locationField.text, "longitude": Double(location.coordinate.longitude), "latitude": Double(location.coordinate.latitude)])
+                        }
                     }
                 
                     self.navigationController?.present(NavigationController(rootViewController: FindListController()), animated: true, completion: nil)
@@ -187,13 +262,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         navigationController?.popViewController(animated: true)
     }
     
-    func getLocation() {
-        if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedAlways) {
-            locationManager.requestAlwaysAuthorization()
-        }
-        
-    }
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) {
             locationField.text = "Current Location"
@@ -227,7 +295,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
             } else {
                 locationField.becomeFirstResponder()
             }
-            getLocation()
             return false
         } else {
             createAccount()

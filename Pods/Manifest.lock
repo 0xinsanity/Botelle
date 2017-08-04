@@ -8,6 +8,9 @@ PODS:
   - Firebase/Database (4.0.4):
     - Firebase/Core
     - FirebaseDatabase (= 4.0.0)
+  - Firebase/Messaging (4.0.4):
+    - Firebase/Core
+    - FirebaseMessaging (= 2.0.0)
   - FirebaseAnalytics (4.0.2):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
@@ -23,9 +26,17 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
   - FirebaseInstanceID (2.0.0):
     - FirebaseCore (~> 4.0)
+  - FirebaseMessaging (2.0.0):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/Logger (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1):
@@ -44,6 +55,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - Protobuf (3.3.0)
   - PureLayout (3.0.2)
   - Stripe (11.2.0)
 
@@ -51,6 +63,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - Firebase/Messaging
   - Kanna (~> 2.1.0)
   - M13Checkbox
   - Material (~> 2.0)
@@ -64,15 +77,17 @@ SPEC CHECKSUMS:
   FirebaseCore: cfc042628ef9f20debe09c0eb683135fcd404cb4
   FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
+  FirebaseMessaging: 227406c05b0dc9290702d2e9f18ab5528f0c2cf2
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   Kanna: 9b4b086c218703f2b94f5b21a466217dd2f9332e
   M13Checkbox: c132a7e0eb964731855eff67b883a0b21b7c0977
   Material: 9ad6479e6b07af97dfa7ca0e5aca0e810917e1cd
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   Stripe: 898f83a95d72180c6eb4acd65b2ae6158fc6a8bd
 
-PODFILE CHECKSUM: 4b846cb222206f7f1bcdf0b66014d18f03f93952
+PODFILE CHECKSUM: 18b9d31ad95fdd8c731a28e71b31db1aabbc70a6
 
 COCOAPODS: 1.2.0

@@ -37,7 +37,10 @@ class ListFormController: UIViewController {
     
     func createList() {
         if (locationField.text! == "" || communityNameField.text! == "") {
-            // TODO: Alert User
+            let alertView = UIAlertController(title: "Error", message: "You forgot to fill in a field", preferredStyle: UIAlertControllerStyle.alert)
+            let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+            alertView.addAction(okButton)
+            self.present(alertView, animated: true, completion: nil)
             return
         }
         
@@ -45,9 +48,11 @@ class ListFormController: UIViewController {
         let user_email = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
         ref.child("Shopping List/\(communityNameField.text!)/area").setValue(locationField.text!)
         ref.child("Shopping List/\(communityNameField.text!)/users").setValue([Auth.auth().currentUser?.email])
-        ref.child("Users/\(user_email)/list/").setValue(communityNameField.text!)
+        ref.child("Users/\(user_email)/lists/").setValue([communityNameField.text!])
         
         self.present(NavigationController(rootViewController: ViewController()), animated: true, completion: nil)
         //self.navigationController?.popViewController(animated: true)
     }
+    
+
 }

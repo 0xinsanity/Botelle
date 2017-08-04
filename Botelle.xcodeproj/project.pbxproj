@@ -286,6 +286,9 @@
 							com.apple.ApplePay = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					D21EAE7B1F27EE8F0072358E = {

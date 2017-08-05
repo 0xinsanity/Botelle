@@ -20,11 +20,12 @@ class ViewController: UITableViewController {
     let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
     var pay_for_goods: UIButton!
     var checkedItemArray: [IndexPath]!
-    var keys: [String]!
+    var keys: [String]! = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navShadow()
+        navigationController?.isMotionEnabled = true
         
         let logoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logout))
         logoutItem.tintColor = teal
@@ -36,7 +37,8 @@ class ViewController: UITableViewController {
         navigationItem.rightViews = [add]
         
         groceriesList = ["My List": []]
-        keys[0] = "My List"
+        // TODO: Figure out how to get my list to appear first
+        keys.append("My List")
         
         ref.child("Users/\(email_name)").observeSingleEvent(of: .value, with: { (snapshot) in
             let full_name = ((snapshot.value! as? NSDictionary)?["full_name"] as? String)!
@@ -156,6 +158,7 @@ class ViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groceriesList[Array(groceriesList.keys)[section]]!.count
     }
@@ -180,14 +183,17 @@ class ViewController: UITableViewController {
     }
     
     func addGrocery() {
+        //self.navigationController?.motionNavigationTransitionType = .zoom
         self.navigationController?.pushViewController(addGroceryController(), animated: true)
+        //present(addGroceryController(), animated: true)
     }
     
     func logout() {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
-            self.present(NavigationController(rootViewController: LoginViewController()), animated: true, completion: nil)
+            self.navigationController?.motionNavigationTransitionType = .none
+            self.navigationController?.present(NavigationController(rootViewController: LoginViewController()), animated: true, completion: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
@@ -217,7 +223,6 @@ class ViewController: UITableViewController {
         
         self.present(alertView, animated: true, completion: nil)
     }
-    
     
     /*func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
         let baseURL = URL(fileURLWithPath: "http://")

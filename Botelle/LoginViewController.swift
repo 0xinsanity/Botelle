@@ -119,7 +119,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             // ...
             if error == nil {
                // Move on
-                self.navigationController?.present(NavigationController(rootViewController: FindListController()), animated: true, completion: nil)
+                self.navigationController?.present(NavigationController(rootViewController: ViewController()), animated: true, completion: nil)
                 
             } else {
                 var error_message: String = ""

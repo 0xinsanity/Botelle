@@ -9,40 +9,57 @@
 import UIKit
 import Kanna
 import Firebase
+import Material
 
-class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
+class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDataSource, SearchBarDelegate, UITextFieldDelegate {
     
-    var dataArray: [String]! = ["Item Name is Here:Price is Here"]
+    var dataArray: [String]! = []
     
-    var searchController: UISearchController!
-    var shouldShowSearchResults = false
+    var searchController: SearchBarController!
     var tableView: UITableView!
     let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
+    var search_string = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isMotionEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        navigationItem.backButton.isHidden = true
         
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = .black
+        tableView.opacity = 0.4
+        tableView.separatorColor = .white
         self.view.addSubview(tableView)
         
         self.navigationItem.leftBarButtonItem?.title = "Cancel"
         self.title = "Add Grocery"
         
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search here..."
+        searchController = SearchBarController(rootViewController: self)
+        //searchController.searchResultsUpdater = self
+        //searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search for Grocery items"
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
+        searchController.searchBar.tintColor = teal
+        searchController.searchBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width*0.5, height: (navigationController?.navigationBar.height)!)
+        searchController.searchBar.clearButton.tintColor = teal
+        searchController.searchBar.textField.delegate = self
+        self.navigationItem.centerViews = [searchController.searchBar]
+        // TODO: Fix placement of cancel button
+        searchController.searchBar.autoPinEdge(toSuperviewEdge: .left, withInset: 7)
+        searchController.searchBar.autoPinEdge(toSuperviewEdge: .top, withInset: 3)
         
-        // TODO: Add second option for location
-        
-        // Place the search bar view to the tableview headerview.
-        tableView.tableHeaderView = searchController.searchBar
+        self.navigationController?.motionNavigationTransitionType = .autoReverse(presenting: .fade)
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        searchController.searchBar.textField.becomeFirstResponder()
     }
     
     
@@ -61,6 +78,13 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
         let information = dataArray[indexPath.row].characters.split(separator: ":").map(String.init)
         cell.textLabel?.text = information[0]
         cell.detailTextLabel?.text = information[1]
+        
+        cell.backgroundColor = UIColor.black
+        cell.opacity = 0.4
+        cell.contentView.opacity = 0.4
+        cell.contentView.backgroundColor = .black
+        cell.textLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .white
         return cell
     }
     
@@ -75,9 +99,8 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
         
         (self.navigationController?.viewControllers.first as! ViewController).tableView.reloadData()
         
-        searchController.searchBar.resignFirstResponder()
-        searchController.isActive = false
-        
+        //searchController.searchBar.resignFirstResponder()
+        //searchController.isActive = false
         self.navigationController?.popToRootViewController(animated: true)
     }
     
@@ -85,56 +108,43 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
         return 60.0
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        if !shouldShowSearchResults {
-            return
+    func searchBar(searchBar: SearchBar, didChange textField: UITextField, with text: String?) {
+        search_string = text!
+        if (dataArray != []) {
+            dataArray = []
         }
-        
-        guard let searchString = searchController.searchBar.text else {
-            return
-        }
-        
-        let url = URL(string: "http://www.SupermarketAPI.com/api.asmx/COMMERCIAL_SearchByProductName?APIKEY=e459ef0739&ItemName="+searchString)
+    }
+    
+    func searchBar(searchBar: SearchBar, willClear textField: UITextField, with text: String?) {
+        dataArray = []
+        tableView.reloadData()
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let url = URL(string: "http://www.SupermarketAPI.com/api.asmx/COMMERCIAL_SearchByProductName?APIKEY=e459ef0739&ItemName="+search_string)
         if let doc = HTML(url: url!, encoding: .utf8) {
             let names = doc.xpath("//itemname")
             let pricing = doc.xpath("//pricing")
-                for i in 0...names.count-1 {
-                    dataArray.append(names[i].innerHTML!+":"+pricing[i].innerHTML!)
-                }
+            for i in 0...names.count-1 {
+                dataArray.append(names[i].innerHTML!+":"+pricing[i].innerHTML!)
+            }
         }
         
         /*// Filter the data array and get only those countries that match the search text.
-        filteredArray = dataArray.filter({ (grocery) -> Bool in
-            let countryText:NSString = grocery as NSString
-            
-            return (countryText.range(of: searchString, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
-        })*/
+         filteredArray = dataArray.filter({ (grocery) -> Bool in
+         let countryText:NSString = grocery as NSString
+         
+         return (countryText.range(of: searchString, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+         })*/
         
         // Reload the tableview.
         tableView.reloadData()
+        textField.resignFirstResponder()
+        return false
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        shouldShowSearchResults = false
-        dataArray = []
-        tableView.reloadData()
+    func searchBar(searchBar: SearchBar, didClear textField: UITextField, with text: String?) {
+        searchBar.clearButton.isHidden = false
     }
-    
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        shouldShowSearchResults = false
-        dataArray = []
-        tableView.reloadData()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if !shouldShowSearchResults {
-            shouldShowSearchResults = true
-            tableView.reloadData()
-        }
-        updateSearchResults(for: self.searchController)
-        
-        searchController.searchBar.resignFirstResponder()
-    }
-    
 }

@@ -67,9 +67,9 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if let list = (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name] {
-            (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name]!.append((tableView.cellForRow(at: indexPath)?.textLabel?.text)!+":"+(tableView.cellForRow(at: indexPath)?.detailTextLabel?.text)!)
+            (self.navigationController?.viewControllers.first as! ViewController).groceriesList["My List"]!.append((tableView.cellForRow(at: indexPath)?.textLabel?.text)!+":"+(tableView.cellForRow(at: indexPath)?.detailTextLabel?.text)!)
         } else {
-            (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name] = [((tableView.cellForRow(at: indexPath)?.textLabel?.text)!)+":"+(tableView.cellForRow(at: indexPath)?.detailTextLabel?.text)!]
+            (self.navigationController?.viewControllers.first as! ViewController).groceriesList["My List"] = [((tableView.cellForRow(at: indexPath)?.textLabel?.text)!)+":"+(tableView.cellForRow(at: indexPath)?.detailTextLabel?.text)!]
         }
         
         

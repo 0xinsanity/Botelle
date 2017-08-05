@@ -20,50 +20,60 @@ class ViewController: UITableViewController {
     let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
     var pay_for_goods: UIButton!
     var checkedItemArray: [IndexPath]!
-
+    var keys: [String]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navShadow()
         
         let logoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logout))
+        logoutItem.tintColor = teal
         self.navigationItem.leftBarButtonItem = logoutItem
         
-        let addItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addGrocery))
-        self.navigationItem.rightBarButtonItem = addItem
+        let add = IconButton(image: Icon.cm.add)
+        add.tintColor = teal
+        add.addTarget(self, action: #selector(addGrocery), for: UIControlEvents.touchUpInside)
+        navigationItem.rightViews = [add]
         
-        groceriesList = [email_name: []]
+        groceriesList = ["My List": []]
+        keys[0] = "My List"
         
-        
-        ref.child("Users/\(email_name)/lists").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let svalue = snapshot.value! as? [String] {
+        ref.child("Users/\(email_name)").observeSingleEvent(of: .value, with: { (snapshot) in
+            let full_name = ((snapshot.value! as? NSDictionary)?["full_name"] as? String)!
+            if let svalue = (snapshot.value! as? NSDictionary)?["lists"] as? [String] {
                 self.list_name = svalue[0] as String!
                 self.navigationController?.navigationBar.topItem?.title = self.list_name
                 self.ref.child("Shopping List/\(self.list_name!)/requests").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
                     // TODO: Implement request system
-                    if let users_notinputted = snapshot.value as? [String] {
-                    for user_notinputted in users_notinputted {
-                            if (user_notinputted == self.email_name) {
+                    //if let users_notinputted = snapshot.value as? [String] {
+                    //for user_notinputted in users_notinputted {
+                            //if (user_notinputted == self.email_name) {
                                 // TODO: Figure out what to do when not permitted yet
-                                self.ref.child("Shopping List/\(self.list_name!)/grocery_list").observe(DataEventType.value, with: { (snapshot2) in
-                                    if let value2 = snapshot2.value! as? NSDictionary {
-                                        self.groceriesList = value2 as! [String : [String]]
+                                self.ref.child("Shopping List/\(self.list_name!)/").observe(DataEventType.value, with: { (snapshot2) in
+                                    if let value2 = (snapshot2.value! as? NSDictionary) {
+                                        let grocery_people = value2["grocery_list"] as! NSDictionary
+                                        for var person in grocery_people {
+                                            if (full_name == (person.key as? String)!) {
+                                                self.groceriesList["My List"] = person.value as! [String]
+                                            } else {
+                                                let list_name = (person.key as? String)! + "'s List"
+                                                self.groceriesList[list_name] = person.value as! [String]
+                                            }
+                                        }
+                                        
                                         self.tableView.reloadData()
                                     }
-                                })
-                            } else {
+                                });
+                            /*} else {
                                 self.ref.child("Shopping List/\(svalue)/grocery_list").observe(DataEventType.value, with: { (snapshot2) in
-                                    if let value2 = snapshot2.value! as? NSDictionary {
-                                        self.groceriesList = value2 as! [String : [String]]
+                                    if let value2 = snapshot2.value! as? [String : [String: [String]]] {
+                                        let grocery_people = value2["grocery_list"] as! [String: [String]]
+                                        for var person in grocery_people {
+                                            let list_name = person.key + "'s List"
+                                            self.groceriesList[list_name] = person.value
+                                        }
                                         self.tableView.reloadData()
-                                    }
-                            })
-                        }
-                        }
-                    }
-                    
-                    
-                    
+                                    }*/
                 })
             } else {
                 self.navigationController?.present(NavigationController(rootViewController: FindListController()), animated: false, completion: nil)
@@ -85,7 +95,11 @@ class ViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if (list_name != nil) {
-            ref.child("Shopping List/\(list_name!)/grocery_list/\(email_name)").setValue(groceriesList[email_name])
+            ref.child("Users/\(email_name)/full_name").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let svalue = snapshot.value! as? String {
+                    self.ref.child("Shopping List/\(self.list_name!)/grocery_list/\(svalue)").setValue(self.groceriesList["My List"])
+                }
+            });
         }
     }
 
@@ -105,7 +119,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let section_text = tableView.headerView(forSection: indexPath.section)?.textLabel?.text
-        if (section_text == email_name) {
+        if (section_text == "My List") {
             return true
         } else {
             return false
@@ -113,7 +127,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (tableView.headerView(forSection: indexPath.section)?.textLabel?.text! != email_name) {
+        if (tableView.headerView(forSection: indexPath.section)?.textLabel?.text! != "My List") {
             if let cell = tableView.cellForRow(at: indexPath) {
                 if (cell.accessoryType == .none) {
                     cell.accessoryType = .checkmark

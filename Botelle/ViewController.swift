@@ -197,7 +197,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let grocery_controller = addGroceryController()
         self.tableView.isUserInteractionEnabled = false
         
-        UIView.animate(withDuration: 0.4, animations: {
+        UIView.animate(withDuration: 0.01, animations: {
             self.tableView.blur(blurRadius: 10)
         }) { (bool) in
             self.load_grocery_controller(grocery_controller: grocery_controller)
@@ -247,7 +247,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         grocery_controller.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         grocery_controller.tableView.delegate = grocery_controller
         grocery_controller.tableView.dataSource = grocery_controller
-        grocery_controller.tableView.opacity = 0.4
+        grocery_controller.tableView.opacity = 0.6
+        grocery_controller.tableView.separatorColor = .white
+        grocery_controller.tableView.tableFooterView = UIView()
+        grocery_controller.tableView.backgroundColor = .black
+        removeShadows()
         
         grocery_controller.searchController = SearchBarController(rootViewController: self)
         //searchController.searchResultsUpdater = self
@@ -267,18 +271,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationItem.rightViews.removeAll()
         self.navigationItem.centerViews = [grocery_controller.searchController.searchBar]
         
-        grocery_controller.searchController.searchBar.autoPinEdge(toSuperviewEdge: .left, withInset: 7)
-        grocery_controller.searchController.searchBar.autoPinEdge(toSuperviewEdge: .top, withInset: 3)
-        
-        // TODO: Figure out why search bar wont become first responder
-        grocery_controller.searchController.searchBar.becomeFirstResponder()
+        grocery_controller.searchController.searchBar.textField.becomeFirstResponder()
     }
     
     func searchBar(searchBar: SearchBar, willClear textField: UITextField, with text: String?) {
         removeAddGroceryFromView()
     }
     
+    func removeShadows() {
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        self.navigationController?.navigationBar.layer.shadowRadius = 0.0
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.0
+    }
+    
     func removeAddGroceryFromView() {
+        navShadow()
         self.navigationItem.centerViews.removeAll()
         self.navigationItem.rightViews = [add]
         self.navigationItem.leftBarButtonItem = logoutItem

@@ -37,6 +37,9 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.detailTextLabel?.text = information[1]
         
         cell.opacity = 0.8
+        cell.backgroundColor = .black
+        cell.textLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .white
         
         return cell
     }
@@ -93,7 +96,7 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // Reload the tableview.
         tableView.reloadData()
-        textField.resignFirstResponder()
+        //textField.resignFirstResponder()
         return false
     }
     

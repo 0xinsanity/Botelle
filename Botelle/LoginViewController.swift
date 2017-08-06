@@ -103,14 +103,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         welcomeBack.autoAlignAxis(toSuperviewAxis: .vertical)
         signintocontinue.autoAlignAxis(toSuperviewAxis: .vertical)
         
-        logo.animate([MotionAnimation.position(CGPoint(x: logo.center.x, y: 130)), .duration(0.5)]) {
-            self.emailField.animate(MotionAnimation.fadeIn)
-            self.passwordField.animate(MotionAnimation.fadeIn)
-            self.signupButton.animate(MotionAnimation.fadeIn)
-            self.loginButton.animate(MotionAnimation.fadeIn)
-            self.welcomeBack.animate(MotionAnimation.fadeIn)
-            self.signintocontinue.animate(MotionAnimation.fadeIn)
+        if (DeviceType.IS_IPHONE_5) {
+            signupButton.autoPinEdge(.top, to: .bottom, of: loginButton, withOffset: 15, relation: NSLayoutRelation.equal)
+            logo.animate([MotionAnimation.position(CGPoint(x: logo.center.x, y: 95)), .duration(0.5)]) {
+                self.emailField.animate(MotionAnimation.fadeIn)
+                self.passwordField.animate(MotionAnimation.fadeIn)
+                self.signupButton.animate(MotionAnimation.fadeIn)
+                self.loginButton.animate(MotionAnimation.fadeIn)
+                self.welcomeBack.animate(MotionAnimation.fadeIn)
+                self.signintocontinue.animate(MotionAnimation.fadeIn)
+            }
+        } else {
+            logo.animate([MotionAnimation.position(CGPoint(x: logo.center.x, y: 130)), .duration(0.5)]) {
+                self.emailField.animate(MotionAnimation.fadeIn)
+                self.passwordField.animate(MotionAnimation.fadeIn)
+                self.signupButton.animate(MotionAnimation.fadeIn)
+                self.loginButton.animate(MotionAnimation.fadeIn)
+                self.welcomeBack.animate(MotionAnimation.fadeIn)
+                self.signintocontinue.animate(MotionAnimation.fadeIn)
+            }
         }
+        
+        
     
     }
     

@@ -14,6 +14,23 @@ import PureLayout
 import CoreLocation
 import M13Checkbox
 
+struct ScreenSize
+{
+    static let SCREEN_WIDTH         = UIScreen.main.bounds.size.width
+    static let SCREEN_HEIGHT        = UIScreen.main.bounds.size.height
+    static let SCREEN_MAX_LENGTH    = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+    static let SCREEN_MIN_LENGTH    = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+}
+
+struct DeviceType
+{
+    static let IS_IPHONE_4_OR_LESS  = ScreenSize.SCREEN_MAX_LENGTH < 568.0
+    static let IS_IPHONE_5          = ScreenSize.SCREEN_MAX_LENGTH == 568.0
+    static let IS_IPHONE_6          = ScreenSize.SCREEN_MAX_LENGTH == 667.0
+    static let IS_IPHONE_6P         = ScreenSize.SCREEN_MAX_LENGTH == 736.0
+}
+
+
 class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
     var nameField: TextField!
     var emailField: TextField!
@@ -139,6 +156,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         createAccountButton.autoPinEdge(.top, to: .bottom, of: locationField, withOffset: 60, relation: NSLayoutRelation.equal)
         currentLocationLabel.autoPinEdge(.top, to: .bottom, of: locationField, withOffset: 15, relation: NSLayoutRelation.equal)
         currentLocationLabel.autoPinEdge(.left, to: .right, of: locationCheckBox, withOffset: 8, relation: NSLayoutRelation.equal)
+        
         nameField.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
         emailField.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
         passwordField.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
@@ -302,7 +320,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         return true
     }
 }
-
 extension UIViewController {
     func navShadow() {
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor

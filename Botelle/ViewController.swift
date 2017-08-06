@@ -193,8 +193,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let information = groceriesList[Array(groceriesList.orderedKeys)[indexPath.section]]?[indexPath.row].characters.split(separator: ":").map(String.init)
         
         var title = information![0] as NSString
-        if (title.length >= 38) {
+        if (title.length >= 38 && (DeviceType.IS_IPHONE_6 || DeviceType.IS_IPHONE_6P)) {
             title = title.substring(with: NSRange(location: 0, length: title.length > 35 ? 35 : title.length))+"..." as NSString
+        } else if (title.length >= 33 && DeviceType.IS_IPHONE_5) {
+            title = title.substring(with: NSRange(location: 0, length: title.length > 30 ? 30 : title.length))+"..." as NSString
         }
         
         cell.primaryLabel.text = title as String

@@ -4,31 +4,22 @@
 <dict>
 	<key></key>
 	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>CFBundleVersion</key>
-	<string>1</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>UIAppFonts</key>
+	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>ProximaNova-Reg.ttf</string>
-		<string>ProximaNova-Sbold.ttf</string>
+		<string>com.venmo.touch.v2</string>
 	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
 	<key>Location</key>
 	<string></string>
 	<key>NSAppTransportSecurity</key>
@@ -46,23 +37,34 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>To show nearby communities to join. To remind you to shop for your friends when at a supermarket.</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
 	<key>CFBundleURLTypes</key>
 	<array/>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ProximaNova-Reg.ttf</string>
+		<string>ProximaNova-Sbold.ttf</string>
+		<string>ProximaNova-Light.ttf</string>
+		<string>ProximaNova-Thin.ttf</string>
+	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
-	<key>LSApplicationQueriesSchemes</key>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
 	<array>
-		<string>com.venmo.touch.v2</string>
+		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>To show nearby communities to join. To remind you to shop for your friends when at a supermarket.</string>
 </dict>
 </plist>

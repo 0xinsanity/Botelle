@@ -64,13 +64,6 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
         return 60.0
     }
     
-    func searchBar(searchBar: SearchBar, didChange textField: UITextField, with text: String?) {
-        search_string = text!
-        if (dataArray != []) {
-            dataArray = []
-        }
-    }
-    
     func searchBar(searchBar: SearchBar, willClear textField: UITextField, with text: String?) {
         dataArray = []
         tableView.reloadData()
@@ -78,7 +71,10 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let url = URL(string: "http://www.SupermarketAPI.com/api.asmx/COMMERCIAL_SearchByProductName?APIKEY=e459ef0739&ItemName="+search_string)
+        if (dataArray != []) {
+            dataArray = []
+        }
+        let url = URL(string: "http://www.SupermarketAPI.com/api.asmx/COMMERCIAL_SearchByProductName?APIKEY=e459ef0739&ItemName="+textField.text!)
         if let doc = HTML(url: url!, encoding: .utf8) {
             let names = doc.xpath("//itemname")
             let pricing = doc.xpath("//pricing")

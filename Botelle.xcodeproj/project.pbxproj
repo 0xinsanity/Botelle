@@ -15,6 +15,9 @@
 		D52701F51F2BBFD300639427 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D52701F41F2BBFD300639427 /* GoogleService-Info.plist */; };
 		D52701F71F2BC05500639427 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52701F61F2BC05500639427 /* LoginViewController.swift */; };
 		D535180E1F3690FD0091246D /* FMBlurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535180D1F3690FD0091246D /* FMBlurable.swift */; };
+		D53518111F36D6A80091246D /* ProximaNova-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D535180F1F36D59F0091246D /* ProximaNova-Light.ttf */; };
+		D53518121F36D6A80091246D /* ProximaNova-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D53518101F36D59F0091246D /* ProximaNova-Thin.ttf */; };
+		D53518141F36DB110091246D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53518131F36DB110091246D /* TableViewCell.swift */; };
 		D535B4551F31839C00029C6F /* CreateNewListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B4541F31839C00029C6F /* CreateNewListController.swift */; };
 		D5BC72C91F2BCBC90093BA5C /* FindListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72C81F2BCBC90093BA5C /* FindListController.swift */; };
 		D5BC72CC1F2BCF220093BA5C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */; };
@@ -63,6 +66,9 @@
 		D52701F41F2BBFD300639427 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D52701F61F2BC05500639427 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D535180D1F3690FD0091246D /* FMBlurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMBlurable.swift; sourceTree = "<group>"; };
+		D535180F1F36D59F0091246D /* ProximaNova-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.ttf"; sourceTree = "<group>"; };
+		D53518101F36D59F0091246D /* ProximaNova-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Thin.ttf"; sourceTree = "<group>"; };
+		D53518131F36DB110091246D /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		D535B4521F3154B000029C6F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D535B4541F31839C00029C6F /* CreateNewListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewListController.swift; sourceTree = "<group>"; };
 		D535B4561F322EE400029C6F /* M13Checkbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13Checkbox.framework; path = "../../Library/Developer/Xcode/DerivedData/Botelle-bzuaadvdaljkdcfmoyybyipxnqxw/Build/Products/Debug-iphoneos/M13Checkbox/M13Checkbox.framework"; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 				D535180D1F3690FD0091246D /* FMBlurable.swift */,
 				D5BC72DE1F3030E90093BA5C /* Resources */,
 				D5BC72CA1F2BCC2F0093BA5C /* Controllers */,
+				D53518131F36DB110091246D /* TableViewCell.swift */,
 			);
 			path = Botelle;
 			sourceTree = "<group>";
@@ -192,6 +199,8 @@
 			children = (
 				D5BC72E11F30DF090093BA5C /* ProximaNova-Reg.ttf */,
 				D5BC72E21F30DF090093BA5C /* ProximaNova-Sbold.ttf */,
+				D535180F1F36D59F0091246D /* ProximaNova-Light.ttf */,
+				D53518101F36D59F0091246D /* ProximaNova-Thin.ttf */,
 				D5BC72DA1F3030880093BA5C /* logo.png */,
 				D5BC72DB1F3030880093BA5C /* text.png */,
 			);
@@ -333,6 +342,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D53518111F36D6A80091246D /* ProximaNova-Light.ttf in Resources */,
+				D53518121F36D6A80091246D /* ProximaNova-Thin.ttf in Resources */,
 				D5BC72DC1F3030880093BA5C /* logo.png in Resources */,
 				D5BC72DD1F3030880093BA5C /* text.png in Resources */,
 				D5BC72D91F302F020093BA5C /* LaunchScreen.storyboard in Resources */,
@@ -417,6 +428,7 @@
 				D5BC72C91F2BCBC90093BA5C /* FindListController.swift in Sources */,
 				D21EAE6E1F27EE8E0072358E /* ViewController.swift in Sources */,
 				D52701F71F2BC05500639427 /* LoginViewController.swift in Sources */,
+				D53518141F36DB110091246D /* TableViewCell.swift in Sources */,
 				D535180E1F3690FD0091246D /* FMBlurable.swift in Sources */,
 				DEF025C91F281FAA00574FC3 /* AddGroceryController.swift in Sources */,
 				D535B4551F31839C00029C6F /* CreateNewListController.swift in Sources */,

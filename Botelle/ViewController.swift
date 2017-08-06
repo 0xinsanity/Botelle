@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let ref = Database.database().reference()
     var list_name: String!
     let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
-    var pay_for_goods: UIButton!
+    var pay_for_goods: RaisedButton!
     var checkedItemArray: [IndexPath]!
     var keys: [String]! = []
     var logoutItem: UIBarButtonItem!
@@ -32,7 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         self.view.addSubview(tableView)
         
-        navShadow()
+        //navShadow()
         navigationController?.isMotionEnabled = true
         
         logoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logout))
@@ -91,16 +91,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         })
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.tableView.register(TableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        pay_for_goods = UIButton(frame: CGRect(x: 10, y: self.view.frame.height-100, width: self.view.frame.width-20, height: 40))
-        pay_for_goods.backgroundColor = UIColor.blue
-        pay_for_goods.setTitle("Pay for Goods", for: UIControlState.normal)
-        pay_for_goods.setTitleColor(UIColor.white, for: UIControlState.normal)
-        pay_for_goods.isHidden = true
+        pay_for_goods = RaisedButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        pay_for_goods.backgroundColor = teal
+        pay_for_goods.setTitle("Pay For Goods", for: UIControlState.normal)
         pay_for_goods.addTarget(self, action: #selector(paidForGroceries), for: UIControlEvents.touchUpInside)
+        pay_for_goods.titleLabel?.font = UIFont(name: "ProximaNova-Semibold", size: 18)
+        pay_for_goods.pulseColor = UIColor.white
+        pay_for_goods.opacity = 0
+        view.layout(pay_for_goods).width(self.view.frame.width).height(60)
         self.view.addSubview(pay_for_goods)
         self.view.bringSubview(toFront: pay_for_goods)
+        pay_for_goods.autoPinEdge(.bottom, to: .bottom, of: view)
+        pay_for_goods.autoAlignAxis(toSuperviewAxis: .vertical)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -130,7 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
      func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let section_text = tableView.headerView(forSection: indexPath.section)?.textLabel?.text
+        let section_text = Array(groceriesList.keys)[indexPath.section]
         if (section_text == "My List") {
             return true
         } else {
@@ -139,17 +143,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (tableView.headerView(forSection: indexPath.section)?.textLabel?.text! != "My List") {
-            if let cell = tableView.cellForRow(at: indexPath) {
+        if (Array(groceriesList.keys)[indexPath.section] != "My List") {
+            if let cell = tableView.cellForRow(at: indexPath) as! TableViewCell? {
+                
                 if (cell.accessoryType == .none) {
+                    cell.primaryLabel.textColor = .white
+                    cell.secondaryLabel.textColor = .white
+                    cell.backgroundColor = teal
                     cell.accessoryType = .checkmark
                     if (checkedItemArray == nil) {
                         checkedItemArray = [indexPath]
                     } else {
                         checkedItemArray.append(indexPath)
                     }
-                    pay_for_goods.isHidden = false
+                    //pay_for_goods.isHidden = false
+                    pay_for_goods.animate([MotionAnimation.fadeIn])
                 } else {
+                    cell.backgroundColor = .white
+                    cell.primaryLabel.textColor = UIColor(rgb: 0x444444)
+                    cell.secondaryLabel.textColor = UIColor(rgb: 0x8C8C8C)
                     // Remove checkeditem from our list
                     for i in 0...checkedItemArray.count {
                         if (indexPath == checkedItemArray[i]) {
@@ -161,7 +173,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }
             if (checkedItemArray.isEmpty) {
-                pay_for_goods.isHidden = true
+                //pay_for_goods.isHidden = true
+                pay_for_goods.animate([MotionAnimation.fadeOut])
             }
             print(checkedItemArray)
         }
@@ -174,14 +187,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+        let cell = TableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         
         let information = groceriesList[Array(groceriesList.keys)[indexPath.section]]?[indexPath.row].characters.split(separator: ":").map(String.init)
         
-        cell.textLabel?.text = information![0]
-        cell.detailTextLabel?.text = information![1]
+        var title = information![0] as NSString
+        if (title.length >= 35) {
+            title = title.substring(with: NSRange(location: 0, length: title.length > 32 ? 32 : title.length))+"..." as NSString
+        }
+        
+        cell.primaryLabel.text = title as String
+        cell.secondaryLabel.text = information![1]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = teal
+        
+        let headerLabel = UILabel(frame: CGRect(x: 10, y: 2, width:
+            tableView.bounds.size.width, height: tableView.bounds.size.height))
+        headerLabel.font = UIFont(name: "ProximaNova-Semibold", size: 18)
+        headerLabel.textColor = UIColor.white
+        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+        headerLabel.sizeToFit()
+        headerView.addSubview(headerLabel)
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 28
     }
     
      func numberOfSections(in tableView: UITableView) -> Int {
@@ -251,7 +288,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         grocery_controller.tableView.separatorColor = .white
         grocery_controller.tableView.tableFooterView = UIView()
         grocery_controller.tableView.backgroundColor = .black
-        removeShadows()
+        //removeShadows()
         
         grocery_controller.searchController = SearchBarController(rootViewController: self)
         //searchController.searchResultsUpdater = self
@@ -286,7 +323,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func removeAddGroceryFromView() {
-        navShadow()
+        //navShadow()
         self.navigationItem.centerViews.removeAll()
         self.navigationItem.rightViews = [add]
         self.navigationItem.leftBarButtonItem = logoutItem

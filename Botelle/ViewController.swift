@@ -258,8 +258,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var items: [String] = []
         var price: Float = 0
         for i in checkedItemArray {
-            items.append((tableView.cellForRow(at: i)?.textLabel?.text)!)
-            price += Float((tableView.cellForRow(at: i)?.detailTextLabel?.text)!)!
+            items.append(((tableView.cellForRow(at: i) as! TableViewCell?)?.primaryLabel.text)!)
+            price += Float(((tableView.cellForRow(at: i) as! TableViewCell?)?.secondaryLabel.text)!)!
         }
         price += 2
         

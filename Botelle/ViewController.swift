@@ -14,13 +14,12 @@ import Material
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SearchBarDelegate {
     
-    var groceriesList: [String: [String]]!
+    var groceriesList: OrderedDictionary<String, [String]> = OrderedDictionary()
     let ref = Database.database().reference()
     var list_name: String!
     let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
     var pay_for_goods: RaisedButton!
     var checkedItemArray: [IndexPath]!
-    var keys: [String]! = []
     var logoutItem: UIBarButtonItem!
     var add: IconButton!
     var tableView: UITableView!
@@ -28,8 +27,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        tableView.dataSource = self
-        tableView.delegate = self
         self.view.addSubview(tableView)
         
         //navShadow()
@@ -43,10 +40,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         add.tintColor = teal
         add.addTarget(self, action: #selector(addGrocery), for: UIControlEvents.touchUpInside)
         navigationItem.rightViews = [add]
-        
-        groceriesList = ["My List": []]
         // TODO: Figure out how to get my list to appear first
-        keys.append("My List")
         
         ref.child("Users/\(email_name)").observeSingleEvent(of: .value, with: { (snapshot) in
             let full_name = ((snapshot.value! as? NSDictionary)?["full_name"] as? String)!
@@ -55,24 +49,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.navigationController?.navigationBar.topItem?.title = self.list_name
                 self.ref.child("Shopping List/\(self.list_name!)/requests").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
                     // TODO: Implement request system
+                    // TODO: Figure out what to do when not permitted yet
+                    
                     //if let users_notinputted = snapshot.value as? [String] {
                     //for user_notinputted in users_notinputted {
                             //if (user_notinputted == self.email_name) {
-                                // TODO: Figure out what to do when not permitted yet
                                 self.ref.child("Shopping List/\(self.list_name!)/").observe(DataEventType.value, with: { (snapshot2) in
                                     if let value2 = (snapshot2.value! as? NSDictionary) {
                                         let grocery_people = value2["grocery_list"] as! NSDictionary
+                                        if let my_groceries = grocery_people[full_name] as! [String]? {
+                                            self.groceriesList["My List"] = my_groceries
+                                        } else {
+                                            self.groceriesList["My List"] = []
+                                        }
                                         for var person in grocery_people {
-                                            if (full_name == (person.key as? String)!) {
-                                                self.groceriesList["My List"] = person.value as! [String]
-                                            } else {
+                                            if (full_name != (person.key as? String)!) {
                                                 let list_name = (person.key as? String)! + "'s List"
                                                 self.groceriesList[list_name] = person.value as! [String]
                                             }
                                         }
-                                        
-                                        self.tableView.reloadData()
+                                    } else {
+                                        self.groceriesList["My List"] = []
                                     }
+                                    self.tableView.dataSource = self
+                                    self.tableView.delegate = self
+                                    self.tableView.reloadData()
                                 });
                             /*} else {
                                 self.ref.child("Shopping List/\(svalue)/grocery_list").observe(DataEventType.value, with: { (snapshot2) in
@@ -126,7 +127,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             self.tableView.beginUpdates()
-            self.groceriesList[Array(groceriesList.keys)[indexPath.section]]?.remove(at: indexPath.row)
+            self.groceriesList[Array(groceriesList.orderedKeys)[indexPath.section]]?.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.endUpdates()
             viewDidAppear(false)
@@ -134,7 +135,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
      func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let section_text = Array(groceriesList.keys)[indexPath.section]
+        let section_text = Array(groceriesList.orderedKeys)[indexPath.section]
         if (section_text == "My List") {
             return true
         } else {
@@ -143,7 +144,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (Array(groceriesList.keys)[indexPath.section] != "My List") {
+        if (Array(groceriesList.orderedKeys)[indexPath.section] != "My List") {
             if let cell = tableView.cellForRow(at: indexPath) as! TableViewCell? {
                 
                 if (cell.accessoryType == .none) {
@@ -157,6 +158,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         checkedItemArray.append(indexPath)
                     }
                     //pay_for_goods.isHidden = false
+                    view.bringSubview(toFront: pay_for_goods)
                     pay_for_goods.animate([MotionAnimation.fadeIn])
                 } else {
                     cell.backgroundColor = .white
@@ -183,17 +185,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groceriesList[Array(groceriesList.keys)[section]]!.count
+        return groceriesList[Array(groceriesList.orderedKeys)[section]]!.count
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         
-        let information = groceriesList[Array(groceriesList.keys)[indexPath.section]]?[indexPath.row].characters.split(separator: ":").map(String.init)
+        let information = groceriesList[Array(groceriesList.orderedKeys)[indexPath.section]]?[indexPath.row].characters.split(separator: ":").map(String.init)
         
         var title = information![0] as NSString
-        if (title.length >= 35) {
-            title = title.substring(with: NSRange(location: 0, length: title.length > 32 ? 32 : title.length))+"..." as NSString
+        if (title.length >= 40) {
+            title = title.substring(with: NSRange(location: 0, length: title.length > 37 ? 37 : title.length))+"..." as NSString
         }
         
         cell.primaryLabel.text = title as String
@@ -222,11 +224,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
      func numberOfSections(in tableView: UITableView) -> Int {
-        return groceriesList.keys.count
+        return groceriesList.orderedKeys.count
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Array(groceriesList.keys)[section]
+        return Array(groceriesList.orderedKeys)[section]
     }
     
     func addGrocery() {

@@ -27,7 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         STPPaymentConfiguration.shared().publishableKey = "pk_test_q9QwQOEzQsQDAqk85enkygy9"
         STPPaymentConfiguration.shared().appleMerchantIdentifier = "merchant.BotelleService"
         
-        if #available(iOS 10.0, *) {
+        // TODO: Implement notification system
+        /*if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
             
@@ -41,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             application.registerUserNotificationSettings(settings)
         }
         
-        application.registerForRemoteNotifications()
+        application.registerForRemoteNotifications()*/
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white

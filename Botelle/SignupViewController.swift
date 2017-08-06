@@ -177,7 +177,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate, CLLocationMan
             
             let email_text = emailField.text!.trimmingCharacters(in: .whitespaces).lowercased()
             let fullname_text = nameField.text!.trimmingCharacters(in: .whitespaces)
-            let email_no_period = emailField.text!.replacingOccurrences(of: ".", with: "_").lowercased()
+            let email_no_period = email_text.replacingOccurrences(of: ".", with: "_").lowercased()
             Auth.auth().createUser(withEmail: email_text, password: passwordField.text!) { (user, error) in
                 if error == nil {
                     // Move on

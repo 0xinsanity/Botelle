@@ -43,8 +43,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // TODO: Figure out how to get my list to appear first
         
         ref.child("Users/\(email_name)").observeSingleEvent(of: .value, with: { (snapshot) in
-            let full_name = ((snapshot.value! as? NSDictionary)?["full_name"] as? String)!
             if let svalue = (snapshot.value! as? NSDictionary)?["lists"] as? [String] {
+                let full_name = ((snapshot.value! as? NSDictionary)?["full_name"] as? String)!
                 self.list_name = svalue[0] as String!
                 self.navigationController?.navigationBar.topItem?.title = self.list_name
                 self.ref.child("Shopping List/\(self.list_name!)/requests").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
@@ -55,8 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     //for user_notinputted in users_notinputted {
                             //if (user_notinputted == self.email_name) {
                                 self.ref.child("Shopping List/\(self.list_name!)/").observe(DataEventType.value, with: { (snapshot2) in
-                                    if let value2 = (snapshot2.value! as? NSDictionary) {
-                                        let grocery_people = value2["grocery_list"] as! NSDictionary
+                                    if let grocery_people = (snapshot2.value! as? NSDictionary)?["grocery_list"] as! NSDictionary? {
                                         if let my_groceries = grocery_people[full_name] as! [String]? {
                                             self.groceriesList["My List"] = my_groceries
                                         } else {
@@ -194,8 +193,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let information = groceriesList[Array(groceriesList.orderedKeys)[indexPath.section]]?[indexPath.row].characters.split(separator: ":").map(String.init)
         
         var title = information![0] as NSString
-        if (title.length >= 40) {
-            title = title.substring(with: NSRange(location: 0, length: title.length > 37 ? 37 : title.length))+"..." as NSString
+        if (title.length >= 38) {
+            title = title.substring(with: NSRange(location: 0, length: title.length > 35 ? 35 : title.length))+"..." as NSString
         }
         
         cell.primaryLabel.text = title as String

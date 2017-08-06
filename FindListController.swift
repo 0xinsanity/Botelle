@@ -168,8 +168,18 @@ class FindListController: UIViewController, MKMapViewDelegate, CLLocationManager
         ref.child("Users/\(email_name)/full_name").observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let full_name = snapshot.value as? NSString
-            self.ref.child("Shopping List/\(self.title_annotation.text!)/requests").setValue([self.email_name])
+            // TODO: Request System
+            //self.ref.child("Shopping List/\(self.title_annotation.text!)/requests").setValue([self.email_name])
             self.ref.child("Users/\(self.email_name)/lists").setValue([self.title_annotation.text!])
+            self.ref.child("Users/\(self.email_name)/full_name").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+                let value  = snapshot.value as? String
+                
+                self.ref.child("Shopping List/\(self.title_annotation.text!)/users/").observeSingleEvent(of: .value, with: { (snapshot) in
+                    var current_users = snapshot.value as? [String]
+                    current_users?.append(value!)
+                    self.ref.child("Shopping List/\(self.title_annotation.text!)/users/").setValue(current_users)
+                })
+            })
             
             self.navigationController?.present(NavigationController(rootViewController: ViewController()), animated: true, completion: nil)
         }) { (error) in

@@ -174,6 +174,10 @@ class CreateNewListController: UIViewController, UITextFieldDelegate, CLLocation
                     full_address = (placemark?.addressDictionary?["FormattedAddressLines"] as! [String]).joined(separator: ", ")
                     let dictionary = ["address": full_address, "longitude": Double(self.current_location.coordinate.longitude), "latitude": Double(self.current_location.coordinate.latitude)] as [String : Any]
                     self.ref.child("Shopping List/\(self.nameField.text!)/area/").setValue(dictionary)
+                    self.ref.child("Users").child(self.user_email).child("lists").setValue([self.nameField.text!])
+                    self.ref.child("Shopping List/\(self.nameField.text!)/addMembers/").setValue(self.addMembersField.text!.components(separatedBy: ", "))
+                    
+                    self.navigationController?.present(NavigationController(rootViewController: ViewController()), animated: true, completion: nil)
                 } else {
                     let alertView = UIAlertController(title: "Error", message: "We could not find your location. Please input it manually.", preferredStyle: UIAlertControllerStyle.alert)
                     let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
@@ -196,19 +200,20 @@ class CreateNewListController: UIViewController, UITextFieldDelegate, CLLocation
                     self.present(alertView, animated: true, completion: nil)
                     return
                 }
+                self.ref.child("Users/\(self.user_email)").setValue(["lists": [self.nameField.text!]])
+                self.ref.child("Shopping List/\(self.nameField.text!)/addMembers/").setValue(self.addMembersField.text!.components(separatedBy: ", "))
+                
+                self.navigationController?.present(NavigationController(rootViewController: ViewController()), animated: true, completion: nil)
+                
             })
         }
         //ref.child("Shopping List/\(nameField.text!)/admin").setValue([Auth.auth().currentUser?.email])
-        self.ref.child("Users/\(self.user_email)/lists/").setValue([nameField.text!])
-        self.ref.child("Shopping List/\(nameField.text!)/addMembers/").setValue(addMembersField.text!.components(separatedBy: ", "))
         
         ref.child("Users/\(user_email)/full_name").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             let value  = snapshot.value as? String
             self.ref.child("Shopping List/\(self.nameField.text!)/users/").setValue([value])
         })
         
-        
-        self.navigationController?.present(NavigationController(rootViewController: ViewController()), animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

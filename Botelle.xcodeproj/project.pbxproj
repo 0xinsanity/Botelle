@@ -14,6 +14,7 @@
 		D21EAE8C1F27EE8F0072358E /* BotelleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21EAE8B1F27EE8F0072358E /* BotelleUITests.swift */; };
 		D52701F51F2BBFD300639427 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D52701F41F2BBFD300639427 /* GoogleService-Info.plist */; };
 		D52701F71F2BC05500639427 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52701F61F2BC05500639427 /* LoginViewController.swift */; };
+		D535180E1F3690FD0091246D /* FMBlurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535180D1F3690FD0091246D /* FMBlurable.swift */; };
 		D535B4551F31839C00029C6F /* CreateNewListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B4541F31839C00029C6F /* CreateNewListController.swift */; };
 		D5BC72C91F2BCBC90093BA5C /* FindListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72C81F2BCBC90093BA5C /* FindListController.swift */; };
 		D5BC72CC1F2BCF220093BA5C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC72CB1F2BCF220093BA5C /* SignupViewController.swift */; };
@@ -61,6 +62,7 @@
 		D21EAE8D1F27EE8F0072358E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D52701F41F2BBFD300639427 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D52701F61F2BC05500639427 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D535180D1F3690FD0091246D /* FMBlurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMBlurable.swift; sourceTree = "<group>"; };
 		D535B4521F3154B000029C6F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D535B4541F31839C00029C6F /* CreateNewListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewListController.swift; sourceTree = "<group>"; };
 		D535B4561F322EE400029C6F /* M13Checkbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13Checkbox.framework; path = "../../Library/Developer/Xcode/DerivedData/Botelle-bzuaadvdaljkdcfmoyybyipxnqxw/Build/Products/Debug-iphoneos/M13Checkbox/M13Checkbox.framework"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				D21EAE721F27EE8F0072358E /* Assets.xcassets */,
 				D21EAE771F27EE8F0072358E /* Info.plist */,
 				D52701F41F2BBFD300639427 /* GoogleService-Info.plist */,
+				D535180D1F3690FD0091246D /* FMBlurable.swift */,
 				D5BC72DE1F3030E90093BA5C /* Resources */,
 				D5BC72CA1F2BCC2F0093BA5C /* Controllers */,
 			);
@@ -414,6 +417,7 @@
 				D5BC72C91F2BCBC90093BA5C /* FindListController.swift in Sources */,
 				D21EAE6E1F27EE8E0072358E /* ViewController.swift in Sources */,
 				D52701F71F2BC05500639427 /* LoginViewController.swift in Sources */,
+				D535180E1F3690FD0091246D /* FMBlurable.swift in Sources */,
 				DEF025C91F281FAA00574FC3 /* AddGroceryController.swift in Sources */,
 				D535B4551F31839C00029C6F /* CreateNewListController.swift in Sources */,
 				D21EAE6C1F27EE8E0072358E /* AppDelegate.swift in Sources */,

@@ -12,7 +12,7 @@ import FirebaseDatabase
 import Stripe
 import Material
 
-class ViewController: UITableViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SearchBarDelegate {
     
     var groceriesList: [String: [String]]!
     let ref = Database.database().reference()
@@ -21,17 +21,25 @@ class ViewController: UITableViewController {
     var pay_for_goods: UIButton!
     var checkedItemArray: [IndexPath]!
     var keys: [String]! = []
+    var logoutItem: UIBarButtonItem!
+    var add: IconButton!
+    var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        tableView.dataSource = self
+        tableView.delegate = self
+        self.view.addSubview(tableView)
+        
         navShadow()
         navigationController?.isMotionEnabled = true
         
-        let logoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logout))
+        logoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logout))
         logoutItem.tintColor = teal
         self.navigationItem.leftBarButtonItem = logoutItem
         
-        let add = IconButton(image: Icon.cm.add)
+        add = IconButton(image: Icon.cm.add)
         add.tintColor = teal
         add.addTarget(self, action: #selector(addGrocery), for: UIControlEvents.touchUpInside)
         navigationItem.rightViews = [add]
@@ -92,6 +100,7 @@ class ViewController: UITableViewController {
         pay_for_goods.isHidden = true
         pay_for_goods.addTarget(self, action: #selector(paidForGroceries), for: UIControlEvents.touchUpInside)
         self.view.addSubview(pay_for_goods)
+        self.view.bringSubview(toFront: pay_for_goods)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -110,16 +119,17 @@ class ViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             self.tableView.beginUpdates()
             self.groceriesList[Array(groceriesList.keys)[indexPath.section]]?.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.endUpdates()
+            viewDidAppear(false)
         }
     }
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let section_text = tableView.headerView(forSection: indexPath.section)?.textLabel?.text
         if (section_text == "My List") {
             return true
@@ -128,7 +138,7 @@ class ViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (tableView.headerView(forSection: indexPath.section)?.textLabel?.text! != "My List") {
             if let cell = tableView.cellForRow(at: indexPath) {
                 if (cell.accessoryType == .none) {
@@ -159,11 +169,11 @@ class ViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groceriesList[Array(groceriesList.keys)[section]]!.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         
         let information = groceriesList[Array(groceriesList.keys)[indexPath.section]]?[indexPath.row].characters.split(separator: ":").map(String.init)
@@ -174,17 +184,25 @@ class ViewController: UITableViewController {
         return cell
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+     func numberOfSections(in tableView: UITableView) -> Int {
         return groceriesList.keys.count
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return Array(groceriesList.keys)[section]
     }
     
     func addGrocery() {
         //self.navigationController?.motionNavigationTransitionType = .zoom
-        self.navigationController?.pushViewController(addGroceryController(), animated: true)
+        let grocery_controller = addGroceryController()
+        self.tableView.isUserInteractionEnabled = false
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.tableView.blur(blurRadius: 10)
+        }) { (bool) in
+            self.load_grocery_controller(grocery_controller: grocery_controller)
+        }
+        //self.navigationController?.pushViewController(addGroceryController(), animated: true)
         //present(addGroceryController(), animated: true)
     }
     
@@ -224,23 +242,51 @@ class ViewController: UITableViewController {
         self.present(alertView, animated: true, completion: nil)
     }
     
-    /*func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
-        let baseURL = URL(fileURLWithPath: "http://")
+    func load_grocery_controller(grocery_controller: addGroceryController) {
+        grocery_controller.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        grocery_controller.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        grocery_controller.tableView.delegate = grocery_controller
+        grocery_controller.tableView.dataSource = grocery_controller
+        grocery_controller.tableView.opacity = 0.4
         
-        let url = baseURL.appendingPathComponent("ephemeral_keys")
-        Alamofire.request(url, method: .post, parameters: [
-            "api_version": apiVersion
-            ])
-            .validate(statusCode: 200..<300)
-            .responseJSON { responseJSON in
-                switch responseJSON.result {
-                case .success(let json):
-                    completion(json as? [String: AnyObject], nil)
-                case .failure(let error):
-                    completion(nil, error)
-                }
-        }
-    }*/
+        grocery_controller.searchController = SearchBarController(rootViewController: self)
+        //searchController.searchResultsUpdater = self
+        //searchController.dimsBackgroundDuringPresentation = false
+        grocery_controller.searchController.searchBar.placeholder = "Search for Grocery Items"
+        grocery_controller.searchController.searchBar.delegate = grocery_controller
+        grocery_controller.searchController.searchBar.delegate = self
+        grocery_controller.searchController.searchBar.sizeToFit()
+        grocery_controller.searchController.searchBar.tintColor = teal
+        //searchController.searchBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width*0.5, height: (navigationController?.navigationBar.height)!)
+        grocery_controller.searchController.searchBar.clearButton.tintColor = teal
+        grocery_controller.searchController.searchBar.textField.delegate = grocery_controller
+        
+        self.view.addSubview(grocery_controller.tableView)
+        self.addChildViewController(grocery_controller)
+        self.navigationItem.leftBarButtonItems?.removeAll()
+        self.navigationItem.rightViews.removeAll()
+        self.navigationItem.centerViews = [grocery_controller.searchController.searchBar]
+        
+        grocery_controller.searchController.searchBar.autoPinEdge(toSuperviewEdge: .left, withInset: 7)
+        grocery_controller.searchController.searchBar.autoPinEdge(toSuperviewEdge: .top, withInset: 3)
+        
+        // TODO: Figure out why search bar wont become first responder
+        grocery_controller.searchController.searchBar.becomeFirstResponder()
+    }
+    
+    func searchBar(searchBar: SearchBar, willClear textField: UITextField, with text: String?) {
+        removeAddGroceryFromView()
+    }
+    
+    func removeAddGroceryFromView() {
+        self.navigationItem.centerViews.removeAll()
+        self.navigationItem.rightViews = [add]
+        self.navigationItem.leftBarButtonItem = logoutItem
+        
+        self.tableView.isUserInteractionEnabled = true
+        self.tableView.unBlur()
+        viewDidAppear(false)
+    }
     
 }
 

@@ -20,49 +20,6 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
     let email_name = (Auth.auth().currentUser?.email)!.replacingOccurrences(of: ".", with: "_")
     var search_string = ""
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.isMotionEnabled = true
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        navigationItem.backButton.isHidden = true
-        
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .black
-        tableView.opacity = 0.4
-        tableView.separatorColor = .white
-        self.view.addSubview(tableView)
-        
-        self.navigationItem.leftBarButtonItem?.title = "Cancel"
-        self.title = "Add Grocery"
-        
-        searchController = SearchBarController(rootViewController: self)
-        //searchController.searchResultsUpdater = self
-        //searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search for Grocery items"
-        searchController.searchBar.delegate = self
-        searchController.searchBar.sizeToFit()
-        searchController.searchBar.tintColor = teal
-        searchController.searchBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width*0.5, height: (navigationController?.navigationBar.height)!)
-        searchController.searchBar.clearButton.tintColor = teal
-        searchController.searchBar.textField.delegate = self
-        self.navigationItem.centerViews = [searchController.searchBar]
-        // TODO: Fix placement of cancel button
-        searchController.searchBar.autoPinEdge(toSuperviewEdge: .left, withInset: 7)
-        searchController.searchBar.autoPinEdge(toSuperviewEdge: .top, withInset: 3)
-        
-        self.navigationController?.motionNavigationTransitionType = .autoReverse(presenting: .fade)
-
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        searchController.searchBar.textField.becomeFirstResponder()
-    }
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,18 +36,14 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.textLabel?.text = information[0]
         cell.detailTextLabel?.text = information[1]
         
-        cell.backgroundColor = UIColor.black
-        cell.opacity = 0.4
-        cell.contentView.opacity = 0.4
-        cell.contentView.backgroundColor = .black
-        cell.textLabel?.textColor = .white
-        cell.detailTextLabel?.textColor = .white
+        cell.opacity = 0.8
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if let list = (self.navigationController?.viewControllers.first as! ViewController).groceriesList[email_name] {
+        if let list = (self.navigationController?.viewControllers.first as! ViewController).groceriesList["My List"] {
             (self.navigationController?.viewControllers.first as! ViewController).groceriesList["My List"]!.append((tableView.cellForRow(at: indexPath)?.textLabel?.text)!+":"+(tableView.cellForRow(at: indexPath)?.detailTextLabel?.text)!)
         } else {
             (self.navigationController?.viewControllers.first as! ViewController).groceriesList["My List"] = [((tableView.cellForRow(at: indexPath)?.textLabel?.text)!)+":"+(tableView.cellForRow(at: indexPath)?.detailTextLabel?.text)!]
@@ -101,7 +54,7 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
         
         //searchController.searchBar.resignFirstResponder()
         //searchController.isActive = false
-        self.navigationController?.popToRootViewController(animated: true)
+        (self.navigationController?.viewControllers.first as! ViewController).removeAddGroceryFromView()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -118,7 +71,7 @@ class addGroceryController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBar(searchBar: SearchBar, willClear textField: UITextField, with text: String?) {
         dataArray = []
         tableView.reloadData()
-        navigationController?.popViewController(animated: true)
+        //navigationController?.popViewController(animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
